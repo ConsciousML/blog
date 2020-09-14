@@ -96,7 +96,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      7 min read
+      8 min read
     
 </span></p>
 
@@ -835,7 +835,17 @@ Not bad for a linear model, taking into consideration that the mean of the prese
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Principal-component-analysis-visualization">Principal component analysis visualization<a class="anchor-link" href="#Principal-component-analysis-visualization"> </a></h3><p>In this section, we will use PCA to reduce the number of feature to two, in order to visualize the plane of the linear regressor.</p>
+<h3 id="Principal-component-analysis-visualization">Principal component analysis visualization<a class="anchor-link" href="#Principal-component-analysis-visualization"> </a></h3><p>In this section, we will use PCA to reduce the number of feature to two, in order to visualize the plane of the linear regressor.<br /></p>
+<p>Suppose a collection of $m$ points $\{\boldsymbol{x}^{(1)}, \dots, \boldsymbol{x}^{(m)}\}$ in $\mathbb{R}^n$.<br />
+The principal components analysis aims to reduce the dimensionality of the points while losing the least precision as possible.<br />
+For each point $\boldsymbol{x}^{(i)} \in \mathbb{R}^n$ we will find a corresponding code vector $\boldsymbol{c}^{(i)} \in \mathbb{R}^l$ where $l$ is smaller than $n$.<br />
+Let $f$ be the encoding function and $g$ be the decoding function and $\boldsymbol{D} \in \mathbb{R}^{n,l}$ is the decoding matrix whose columns are orthonormal:
+$$
+\begin{align}
+    f(\boldsymbol{x}) &amp;= \boldsymbol{D}^\top \boldsymbol{x} \\
+    g(f(\boldsymbol{x})) &amp;= \boldsymbol{D}\boldsymbol{D}^\top \boldsymbol{x}
+\end{align}
+$$</p>
 
 </div>
 </div>
