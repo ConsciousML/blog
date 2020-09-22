@@ -180,27 +180,11 @@ window.onload = wrap_img;
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Generate-a-polynomial-distribution-with-random-noise">Generate a polynomial distribution with random noise<a class="anchor-link" href="#Generate-a-polynomial-distribution-with-random-noise"> </a></h3>
-</div>
-</div>
-</div>
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)])</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
+<p>Generate a polynomial distribution with random noise</p>
 
 </div>
-    
-
+</div>
+</div>
     
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -226,7 +210,9 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">randvec</span><span class="p">(</span><span class="o">-</span><span class="mf">1e4</span><span class="p">,</span> <span class="mf">1e4</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)])</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+<span class="c1"># Creating random points from a gaussian with random noise</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">randvec</span><span class="p">(</span><span class="o">-</span><span class="mf">1e4</span><span class="p">,</span> <span class="mf">1e4</span><span class="p">,</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="n">X</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -332,40 +318,8 @@ As you have probably guessed, this equation is not linear. We use a trick to mak
                 <span class="n">X_pow</span> <span class="o">/=</span> <span class="n">std</span>
         <span class="n">X_d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">([</span><span class="n">X_d</span><span class="p">,</span> <span class="n">X_pow</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">X_d</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">create_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">weights</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">features</span><span class="o">.</span><span class="n">mm</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
 </pre></div>
 
@@ -383,7 +337,8 @@ As you have probably guessed, this equation is not linear. We use a trick to mak
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">y_true</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">create_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">y_true</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -399,7 +354,9 @@ As you have probably guessed, this equation is not linear. We use a trick to mak
 Training a linear model using least square regression is equivalent to minimize the mean squared error:</p>
 $$
 \begin{align}
+\large
 \text{Mse}(\hat{y}, y) &amp;= \frac{1}{n}\sum_{i=1}^{n}{||\hat{y}_i - y_i ||_{2}^{2}} \\
+\large
 \text{Mse}(\hat{y}, y) &amp;= \frac{1}{n}||\boldsymbol{X}\boldsymbol{w} - \boldsymbol{y} ||_2^2
 \end{align}
 $$<p>where $n$ is the number of samples, $\hat{y}$ is the predicted value of the model and $y$ is the true target.<br />
@@ -407,7 +364,9 @@ The prediction $\hat{y}$ is obtained by matrix multiplication between the input 
 <p>Minimizing the $\text{Mse}$ can be achieved by solving the gradient of this equation equals to zero in regards to the weights $\boldsymbol{w}$:</p>
 $$
 \begin{align}
+\large
 \nabla_{\boldsymbol{w}}\text{Mse}(\hat{y}, y) &amp;= 0 \\
+\large
 (\boldsymbol{X}^\top \boldsymbol{X})^{-1}\boldsymbol{X}^\top \boldsymbol{y} &amp;= \boldsymbol{w}
 \end{align}
 $$<p>For more information on how to find $\boldsymbol{w}$ please visit the section "Linear Least Squares" of this <a href="https://en.wikipedia.org/wiki/Least_squares#:~:text=The%20linear%20least%2Dsquares%20problem,is%20similar%20in%20both%20cases">link</a>.</p>
@@ -532,18 +491,32 @@ $$<p>For more information on how to find $\boldsymbol{w}$ please visit the secti
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Method-2:-Gradient-Descent">Method 2: Gradient Descent<a class="anchor-link" href="#Method-2:-Gradient-Descent"> </a></h3><p>The Gradient descent method takes steps proportional to the negative of the gradient of a function at a given point, in order to iteratively minimize the objective function.<br /> The gradient generalizes the notion of derivative to the case where the derivative is with respect to a vector: the gradient of $f$ is the vector containing all of the partial derivatives, denoted $\nabla_{\boldsymbol{x}}f(\boldsymbol{x})$.<br /></p>
 <p>The directional derivative in direction $\boldsymbol{u}$ (a unit vector) is the slope of the function $f$ in direction $\boldsymbol{u}$. In other words, the directional derivative is the derivative of the function $f(\boldsymbol{x} + \sigma \boldsymbol{u})$ with respect to $\sigma$ close to 0. To minimize $f$, we would like to find the direction in which $f$ decreases the fastest. We can do this using the directional derivative:
- $$\min_{\boldsymbol{u}, \boldsymbol{u}^\top \boldsymbol{u} = 1}{\boldsymbol{u}^\top \nabla_{\boldsymbol{x}} f(\boldsymbol{x})}$$<br />
- $$= \min_{\boldsymbol{u}, \boldsymbol{u}^\top \boldsymbol{u} = 1}{||\boldsymbol{u}||_2 ||\nabla_{\boldsymbol{x}}f(\boldsymbol{x})||_2 \cos \theta}$$<br />
+$$
+\large
+\begin{align}
+    &amp;\min_{\boldsymbol{u}, \boldsymbol{u}^\top \boldsymbol{u} = 1}{\boldsymbol{u}^\top \nabla_{\boldsymbol{x}} f(\boldsymbol{x})} \\
+    = &amp;\min_{\boldsymbol{u}, \boldsymbol{u}^\top \boldsymbol{u} = 1}{||\boldsymbol{u}||_2 ||\nabla_{\boldsymbol{x}}f(\boldsymbol{x})||_2 \cos \theta}
+\end{align}
+$$
 ignoring factors that do not depend on $\boldsymbol{u}$, this simplifies to $\min_{u}{\cos \theta}$. This is minimized when $\boldsymbol{u}$ points in the opposite direction as the gradient. Each step of the gradient descent method proposes a new points:
-$$\boldsymbol{x'} = \boldsymbol{x} - \epsilon \nabla_{\boldsymbol{x}}f(\boldsymbol{x})$$<br />
+$$
+\large
+\boldsymbol{x'} = \boldsymbol{x} - \epsilon \nabla_{\boldsymbol{x}}f(\boldsymbol{x})
+$$<br />
 where $\epsilon$ is the learning rate.<br />
 In the context of polynomial regression, the gradient descent is as follow:
-$$\boldsymbol{w} = \boldsymbol{w} - \epsilon \nabla_{\boldsymbol{w}}\text{MSE}$$<br />
+$$
+\large
+\boldsymbol{w} = \boldsymbol{w} - \epsilon \nabla_{\boldsymbol{w}}\text{MSE}
+$$<br />
 where:
-$$\nabla_{\boldsymbol{w}}\text{MSE} = \nabla_{\boldsymbol{w}}\left(\frac{1}{n}{||\boldsymbol{X}\boldsymbol{w} - \boldsymbol{y} ||_2^2}\right)$$<br />
-
-$$= \frac{2}{N}\boldsymbol{X}^\top(\boldsymbol{X}\boldsymbol{w} - \boldsymbol{y})$$
-</p>
+$$
+\large
+\begin{align}
+\nabla_{\boldsymbol{w}}\text{MSE} &amp;= \nabla_{\boldsymbol{w}}\left(\frac{1}{n}{||\boldsymbol{X}\boldsymbol{w} - \boldsymbol{y} ||_2^2}\right) \\
+&amp;= \frac{2}{N}\boldsymbol{X}^\top(\boldsymbol{X}\boldsymbol{w} - \boldsymbol{y})
+\end{align}
+$$</p>
 
 </div>
 </div>
@@ -591,23 +564,8 @@ $$= \frac{2}{N}\boldsymbol{X}^\top(\boldsymbol{X}\boldsymbol{w} - \boldsymbol{y}
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">features</span> <span class="o">=</span> <span class="n">create_features</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">degree</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">standardize</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">weights_gd</span> <span class="o">=</span> <span class="n">gradient_descent</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">y_true</span><span class="p">)</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pred_gd</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">weights_gd</span><span class="p">)</span>
+<span class="n">pred_gd</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">weights_gd</span><span class="p">)</span>
 </pre></div>
 
     </div>
