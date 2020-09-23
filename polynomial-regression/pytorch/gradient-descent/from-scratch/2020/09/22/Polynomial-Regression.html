@@ -311,8 +311,8 @@ As you have probably guessed, this equation is not linear. We use a trick to mak
 Training a linear model using least square regression is equivalent to minimize the mean squared error:</p>
 $$
 \begin{align}
-\text{Mse}(\hat{y}, y) &amp;= \frac{1}{n}\sum_{i=1}^{n}{||\hat{y}_i - y_i ||_{2}^{2}} \\
-\text{Mse}(\hat{y}, y) &amp;= \frac{1}{n}||\boldsymbol{X}\boldsymbol{w} - \boldsymbol{y} ||_2^2
+    \text{Mse}(\hat{y}, y) &amp;= \frac{1}{n}\sum_{i=1}^{n}{||\hat{y}_i - y_i ||_{2}^{2}} \\
+    \text{Mse}(\hat{y}, y) &amp;= \frac{1}{n}||\boldsymbol{X}\boldsymbol{w} - \boldsymbol{y} ||_2^2
 \end{align}
 $$<p>where $n$ is the number of samples, $\hat{y}$ is the predicted value of the model and $y$ is the true target.<br />
 The prediction $\hat{y}$ is obtained by matrix multiplication between the input $\boldsymbol{X}$ and the weights of the model $\boldsymbol{w}$.<br /></p>
