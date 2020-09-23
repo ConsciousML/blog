@@ -931,7 +931,8 @@ Here is a nice explanation of how to find the gradient of the binary cross entro
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Training the model</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
 <span class="n">weights</span><span class="p">,</span> <span class="n">bn_train</span> <span class="o">=</span> <span class="n">train_logit_reg</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 <span class="n">y_pred</span> <span class="o">=</span> <span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Binary cross-entropy on the train set:&#39;</span><span class="p">,</span> <span class="n">bn_train</span><span class="p">)</span>
@@ -971,7 +972,8 @@ Here is a nice explanation of how to find the gradient of the binary cross entro
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bn_test</span> <span class="o">=</span> <span class="n">binary_cross_entropy</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Test the model</span>
+<span class="n">bn_test</span> <span class="o">=</span> <span class="n">binary_cross_entropy</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Binary cross-entropy on the test set:&#39;</span><span class="p">,</span> <span class="n">bn_test</span><span class="p">)</span>
 </pre></div>
 
