@@ -435,60 +435,63 @@ $$</p>
 <h2 id="Implementation">Implementation<a class="anchor-link" href="#Implementation"> </a></h2><p>We will compute the convex optimizations using the CVXOPT package.
 The solver performs the following optimization:
 $$
-    \min \frac{1}{2} \boldsymbol{\sigma}^\top \boldsymbol{P} \boldsymbol{\sigma} - 1^\top\boldsymbol{\sigma} \
-    \text{s.t.} \</p>
-
-<pre><code>- \sigma_i \leq 0 \\
-\boldsymbol{y}^\top \boldsymbol{\sigma} = 0
-</code></pre>
+\begin{align}
+    \min &amp;\frac{1}{2} \boldsymbol{\sigma}^\top \boldsymbol{P} \boldsymbol{\sigma} - 1^\top\boldsymbol{\sigma} \\
+    &amp;\text{s.t.} \\
+    &amp;- \sigma_i \leq 0 \\
+    &amp;\boldsymbol{y}^\top \boldsymbol{\sigma} = 0
+\end{align}
+$$</p>
+<p>As you have probably guess, we will have to convert the dual problem in matrix form, let's define:
 $$
-
-As you have probably guess, we will have to convert the dual problem in matrix form, let's define:
-$$\begin{align}
+\begin{align}
     &amp;P_{ij} = y_i y_j \boldsymbol{K}_{ij} \\
     &amp;\boldsymbol{w} = \sum_{i=1}^{N} y_i \sigma_i\phi(\boldsymbol{x}_i) \\
     &amp;b = y_s - \sum_{m \in S} \sigma_m y_m \phi(\boldsymbol{x}_m)^\top \phi(\boldsymbol{x}_s) \\
-\end{align}$$
-where $S$ is the set of support vectors such as $\sigma_i &gt; 0$.&lt;br&gt;
+\end{align}
+$$
+where $S$ is the set of support vectors such as $\sigma_i &gt; 0$.<br />
 We can solve the hard margin optimization problem by solving:
-$$\begin{align}
+$$
+\begin{align}
     \min &amp;\frac{1}{2} \boldsymbol{x}^\top\boldsymbol{P}\boldsymbol{x} + \boldsymbol{q}^\top\boldsymbol{x}\\
     &amp;\text{s.t.} \\
     &amp;\boldsymbol{G}\boldsymbol{x} \leq h \\
     &amp;\boldsymbol{A}\boldsymbol{x} = 0
-\end{align}$$
-where $h$ is a column of ones, $\boldsymbol{A}$ contains the labels and $\boldsymbol{G}$ is a diagonal matrix full of $-1$.
-
-Here is the pseudo-algorithm for training an SVM:
-- Compute $\boldsymbol{P}$.
-- Compute $\boldsymbol{w}$.
-- Find the support vectors $S$ by finding any data point where $\sigma_i &gt; 0$.
-- Compute $b$.
-- To predict, compute:
+\end{align}
 $$
-<pre><code>y_{test} = \text{sign}\left(\boldsymbol{w}^\top \phi({\boldsymbol{x}_{test}}) + b \right)
-</code></pre>
+where $h$ is a column of ones, $\boldsymbol{A}$ contains the labels and $\boldsymbol{G}$ is a diagonal matrix full of $-1$.</p>
+<p>Here is the pseudo-algorithm for training an SVM:</p>
+<ul>
+<li>Compute $\boldsymbol{P}$.</li>
+<li>Compute $\boldsymbol{w}$.</li>
+<li>Find the support vectors $S$ by finding any data point where $\sigma_i &gt; 0$.</li>
+<li>Compute $b$.</li>
+<li>To predict, compute:
 $$
-CVXOPT form:
-
-In matrix form the dual optimization is:
+  y_{test} = \text{sign}\left(\boldsymbol{w}^\top \phi({\boldsymbol{x}_{test}}) + b \right)
 $$
-<pre><code>\min \frac{1}{2} \boldsymbol{\sigma}^\top \boldsymbol{P} \boldsymbol{\sigma} - 1^\top\boldsymbol{\sigma} \\
-\text{s.t.} \\
-- \sigma_i \leq 0 \\
-\boldsymbol{y}^\top \boldsymbol{\sigma} = 0
-</code></pre>
+CVXOPT form:</li>
+</ul>
+<p>In matrix form the dual optimization is:
 $$
-
-For training a soft margin classifier, we add a constraint on $C$:
+\begin{align}
+    \min &amp;\frac{1}{2} \boldsymbol{\sigma}^\top \boldsymbol{P} \boldsymbol{\sigma} - 1^\top\boldsymbol{\sigma} \\
+    &amp;\text{s.t.} \\
+    &amp;- \sigma_i \leq 0 \\
+    &amp;\boldsymbol{y}^\top \boldsymbol{\sigma} = 0
+\end{align}
+$$</p>
+<p>For training a soft margin classifier, we add a constraint on $C$:
 $$
-<pre><code>\min \frac{1}{2} \boldsymbol{\sigma}^\top \boldsymbol{P} \boldsymbol{\sigma} - 1^\top\boldsymbol{\sigma} \\
-\text{s.t.} \\
-- \sigma_i \leq 0 \\
-\sigma_i \leq C \\
-\boldsymbol{y}^\top \boldsymbol{\sigma} = 0
-</code></pre>
-<p>$$</p>
+\begin{align}
+    \min &amp;\frac{1}{2} \boldsymbol{\sigma}^\top \boldsymbol{P} \boldsymbol{\sigma} - 1^\top\boldsymbol{\sigma} \\
+    &amp;\text{s.t.} \\
+    &amp;- \sigma_i \leq 0 \\
+    &amp;\sigma_i \leq C \\
+    &amp;\boldsymbol{y}^\top \boldsymbol{\sigma} = 0
+\end{align}
+$$</p>
 
 </div>
 </div>
