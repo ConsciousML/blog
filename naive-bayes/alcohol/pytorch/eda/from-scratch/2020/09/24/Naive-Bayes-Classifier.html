@@ -241,63 +241,20 @@ We will train our model on the <a href="https://www.kaggle.com/uciml/student-alc
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">students_mat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;student-mat.csv&#39;</span><span class="p">))</span>
 <span class="n">students_por</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;student-por.csv&#39;</span><span class="p">))</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
+<span class="c1"># Concatenating students data from math and portuguese class</span>
+<span class="n">students</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">students_mat</span><span class="p">,</span> <span class="n">students_por</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">students</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">students_mat</span><span class="p">,</span> <span class="n">students_por</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">students</span><span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="s1">&#39;G1&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">students</span><span class="p">[</span><span class="s1">&#39;G1&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">students</span><span class="p">[</span><span class="s1">&#39;G3&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">3</span>
+<span class="c1"># Averaging three grades into one single grade</span>
+<span class="n">students</span><span class="p">[</span><span class="s1">&#39;grade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="s1">&#39;G1&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">students</span><span class="p">[</span><span class="s1">&#39;G1&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">students</span><span class="p">[</span><span class="s1">&#39;G3&#39;</span><span class="p">])</span> <span class="o">/</span> <span class="mi">3</span>
 
 <span class="c1"># Combining weekly and weekend alcohol consumption into a single attribute</span>
 <span class="n">students</span><span class="p">[</span><span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">students</span><span class="p">[</span><span class="s1">&#39;Walc&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="n">students</span><span class="p">[</span><span class="s1">&#39;Dalc&#39;</span><span class="p">]</span>
 
 <span class="c1"># Drop the combined columns</span>
 <span class="n">students</span> <span class="o">=</span> <span class="n">students</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;G1&#39;</span><span class="p">,</span> <span class="s1">&#39;G2&#39;</span><span class="p">,</span> <span class="s1">&#39;G3&#39;</span><span class="p">,</span> <span class="s1">&#39;school&#39;</span><span class="p">])</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">students</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">students</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -355,18 +312,18 @@ We will train our model on the <a href="https://www.kaggle.com/uciml/student-alc
   <tbody>
     <tr>
       <th>0</th>
-      <td>0</td>
+      <td>F</td>
       <td>18</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
+      <td>U</td>
+      <td>GT3</td>
+      <td>A</td>
       <td>4</td>
       <td>4</td>
-      <td>0</td>
-      <td>4</td>
-      <td>0</td>
+      <td>at_home</td>
+      <td>teacher</td>
+      <td>course</td>
       <td>...</td>
-      <td>0</td>
+      <td>no</td>
       <td>4</td>
       <td>3</td>
       <td>4</td>
@@ -379,18 +336,18 @@ We will train our model on the <a href="https://www.kaggle.com/uciml/student-alc
     </tr>
     <tr>
       <th>1</th>
-      <td>0</td>
+      <td>F</td>
       <td>17</td>
+      <td>U</td>
+      <td>GT3</td>
+      <td>T</td>
       <td>1</td>
-      <td>0</td>
       <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>2</td>
-      <td>0</td>
+      <td>at_home</td>
+      <td>other</td>
+      <td>course</td>
       <td>...</td>
-      <td>0</td>
+      <td>no</td>
       <td>5</td>
       <td>3</td>
       <td>3</td>
@@ -403,18 +360,18 @@ We will train our model on the <a href="https://www.kaggle.com/uciml/student-alc
     </tr>
     <tr>
       <th>2</th>
-      <td>0</td>
+      <td>F</td>
       <td>15</td>
+      <td>U</td>
+      <td>LE3</td>
+      <td>T</td>
       <td>1</td>
       <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>2</td>
-      <td>2</td>
+      <td>at_home</td>
+      <td>other</td>
+      <td>other</td>
       <td>...</td>
-      <td>0</td>
+      <td>no</td>
       <td>4</td>
       <td>3</td>
       <td>2</td>
@@ -427,18 +384,18 @@ We will train our model on the <a href="https://www.kaggle.com/uciml/student-alc
     </tr>
     <tr>
       <th>3</th>
-      <td>0</td>
+      <td>F</td>
       <td>15</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
+      <td>U</td>
+      <td>GT3</td>
+      <td>T</td>
       <td>4</td>
       <td>2</td>
-      <td>1</td>
-      <td>3</td>
-      <td>1</td>
+      <td>health</td>
+      <td>services</td>
+      <td>home</td>
       <td>...</td>
-      <td>1</td>
+      <td>yes</td>
       <td>3</td>
       <td>2</td>
       <td>2</td>
@@ -451,18 +408,18 @@ We will train our model on the <a href="https://www.kaggle.com/uciml/student-alc
     </tr>
     <tr>
       <th>4</th>
-      <td>0</td>
+      <td>F</td>
       <td>16</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
+      <td>U</td>
+      <td>GT3</td>
+      <td>T</td>
       <td>3</td>
       <td>3</td>
-      <td>2</td>
-      <td>2</td>
-      <td>1</td>
+      <td>other</td>
+      <td>other</td>
+      <td>home</td>
       <td>...</td>
-      <td>0</td>
+      <td>no</td>
       <td>4</td>
       <td>3</td>
       <td>2</td>
@@ -598,7 +555,7 @@ We will train our model on the <a href="https://www.kaggle.com/uciml/student-alc
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b38dacf9c8&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1b1a6856d48&gt;</pre>
 </div>
 
 </div>
@@ -750,7 +707,7 @@ Let's see how those behaviors have an impact on students success and life.</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b38efb7548&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1b1a8863cc8&gt;</pre>
 </div>
 
 </div>
@@ -813,7 +770,7 @@ But the amount of study hours of students who does not drink during weekend is m
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b38ef9f208&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1b1a8de7b08&gt;</pre>
 </div>
 
 </div>
@@ -879,7 +836,7 @@ But the amount of study hours of students who does not drink during weekend is m
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b39118de88&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1b1a7d7e7c8&gt;</pre>
 </div>
 
 </div>
@@ -941,7 +898,7 @@ The impact on grades is much more important for students with severe consumption
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b390c026c8&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1b1a8e2e188&gt;</pre>
 </div>
 
 </div>
@@ -1006,7 +963,7 @@ It makes more sense to try to predict the weekly consumption of students so we c
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x2b38baf6708&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1b1a7f9ae88&gt;</pre>
 </div>
 
 </div>
@@ -1035,26 +992,13 @@ It makes more sense to try to predict the weekly consumption of students so we c
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">students</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">students</span><span class="p">[</span><span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>                            <span class="c1"># little </span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Converting weekly consumption to classes</span>
+<span class="n">students</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">students</span><span class="p">[</span><span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>                            <span class="c1"># little </span>
 <span class="n">students</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">students</span><span class="p">[</span><span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">),</span> <span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># moderate</span>
 <span class="n">students</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">students</span><span class="p">[</span><span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>                             <span class="c1"># severe</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># when we will fit the model</span>
+<span class="c1"># We need to distinguish categorical from numeric values to fit different distribution</span>
+<span class="c1"># when we will fit the model</span>
 <span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;traveltime&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;studytime&#39;</span><span class="p">,</span>
@@ -1066,62 +1010,18 @@ It makes more sense to try to predict the weekly consumption of students so we c
                 <span class="s1">&#39;absences&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;grade&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;alc&#39;</span><span class="p">]</span>
-</pre></div>
 
-    </div>
-</div>
-</div>
+<span class="n">students</span> <span class="o">=</span> <span class="n">students</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Walc&#39;</span><span class="p">,</span> <span class="s1">&#39;Dalc&#39;</span><span class="p">])</span>
 
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">students</span> <span class="o">=</span> <span class="n">students</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Walc&#39;</span><span class="p">,</span> <span class="s1">&#39;Dalc&#39;</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">is_categorical</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">is_categorical</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">students</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">numeric_cols</span><span class="p">:</span>
         <span class="n">is_categorical</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">is_categorical</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-    
-
-    
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">students</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+        
+<span class="c1"># Convert data to torch tensor</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">students</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">students</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
 </pre></div>
 
