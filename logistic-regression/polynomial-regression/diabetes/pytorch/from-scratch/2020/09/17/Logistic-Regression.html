@@ -164,7 +164,7 @@ window.onload = wrap_img;
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>During this experiment, we will train logistic regression on diabetes data, from scratch using Pytorch.<br />
+<p>During this experiment, we will train logistic regression on diabetes data, from scratch using Pytorch.
 The <a href="https://www.kaggle.com/uciml/pima-indians-diabetes-database">Pima Indians Diabetes Database</a> has been gathered by the National Institute of Diabetes and Digestive and Kidney Diseases. The objective of this dataset is to diagnostically predict whether or not a patient has diabetes, based on certain diagnostic measurements included in the dataset. Several constraints were placed on the selection of these instances from a larger database. In particular, all patients here are females at least 21 years old of Pima Indian heritage.
 This dataset contains the following features:</p>
 <ul>
@@ -501,8 +501,8 @@ This dataset contains the following features:</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>On this sample of data, the standard devitation of the columns looks reasonably high except for the DiabetesPedigree but it is acceptable because the mean is relatively low.<br />
-A feature having low std is likely to provide close to no information to the model.<br />
+<p>On this sample of data, the standard devitation of the columns looks reasonably high except for the DiabetesPedigree but it is acceptable because the mean is relatively low.
+A feature having low std is likely to provide close to no information to the model.
 Which is not the case here.</p>
 
 </div>
@@ -612,8 +612,8 @@ Which is not the case here.</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The glucose level, BMI, age and number of pregnancies are highly correlated with the outcome.<br />
-Suprisingly, the insulin level is not very correlated with the outcome.<br />
+<p>The glucose level, BMI, age and number of pregnancies are highly correlated with the outcome.
+Suprisingly, the insulin level is not very correlated with the outcome.
 Most likely because the insulin is correlated with the glucose and the glucose has 0.47 correlation with the target.</p>
 
 </div>
@@ -666,7 +666,7 @@ Most likely because the insulin is correlated with the glucose and the glucose h
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For patient with diabetes, the glucose level is significantly higher.<br />
+<p>For patient with diabetes, the glucose level is significantly higher.
 In other words, a patient with high glucose level is very likely to have diabetes.</p>
 
 </div>
@@ -783,29 +783,28 @@ In other words, a patient with high glucose level is very likely to have diabete
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Train-Logistic-Regression">Train Logistic Regression<a class="anchor-link" href="#Train-Logistic-Regression"> </a></h3><p>The prediction of a logistic model is as follow:
 $$
-    \large \hat{y} = \sigma(\boldsymbol{X}\boldsymbol{w})
+    \hat{y} = \sigma(\boldsymbol{X}\boldsymbol{w})
 $$
 Where $\sigma$ is the sigmoid or logit function:
 $$
-    \large \sigma(\boldsymbol{x}) = \frac{1}{1 + \exp(-x)}
-$$<br />
+    \sigma(\boldsymbol{x}) = \frac{1}{1 + \exp(-x)}
+$$
 The prediction $\hat{y}$ is obtained by matrix multiplication between the input $\boldsymbol{X}$ and the weights of the model $\boldsymbol{w}$ given as input to the logit function.<br />
 The sigmoid function is used here because it squashes the input in the $[0, 1]$ range suitable for describing a Bernouilli distribution.<br />
 Where the Bernouilli cases are:</p>
 <ul>
 <li>the patient has diabetes with $p$ probability</li>
-<li>the patient does not have diabetes with $1 - p$ probability<br /></li>
+<li>the patient does not have diabetes with $1 - p$ probability</li>
 </ul>
-<p>It is important to note that the bias is included in $\boldsymbol{X}$ as a column of ones.<br /></p>
-<p>Training a classification model can be expressed as maximizing the likelihood of the observed data.<br />
-In other words, we want the predicted probability of our model that a patient has diabetes to be as close as the true probability of the data.<br />
-In practice, maximizing the likelihood is equivalent to minimize the negative log likelihood:<br />
+<p>It is important to note that the bias is included in $\boldsymbol{X}$ as a column of ones.</p>
+<p>Training a classification model can be expressed as maximizing the likelihood of the observed data.</p>
+<p>In practice, maximizing the likelihood is equivalent to minimize the negative log likelihood:
 $$
-    \large L(\boldsymbol{\theta}) = - \frac{1}{N}\sum_{i=1}^{n}\boldsymbol{y_i}\log(\hat{\boldsymbol{y}}_i)
-$$<br />
-Because we dealing with a binary target, it is appropriate to use the binary cross entropy:<br />
+    L(\boldsymbol{\theta}) = - \frac{1}{N}\sum_{i=1}^{n}\boldsymbol{y_i}\log(\hat{\boldsymbol{y}}_i)
 $$
-    \large L(\boldsymbol{\theta}) = - \frac{1}{N}\sum_{i=1}^{n}\boldsymbol{y_i}\log(\hat{\boldsymbol{y}}_i) + (1 - \boldsymbol{y_i})\log(1 - \hat{\boldsymbol{y}}_i)
+Because we dealing with a binary target, it is appropriate to use the binary cross entropy:
+$$
+    L(\boldsymbol{\theta}) = - \frac{1}{N}\sum_{i=1}^{n}\boldsymbol{y_i}\log(\hat{\boldsymbol{y}}_i) + (1 - \boldsymbol{y_i})\log(1 - \hat{\boldsymbol{y}}_i)
 $$</p>
 
 </div>
@@ -813,31 +812,32 @@ $$</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Gradient-Descent-for-Logistic-Regression">Gradient Descent for Logistic Regression<a class="anchor-link" href="#Gradient-Descent-for-Logistic-Regression"> </a></h3><p>We will use Gradient Descent to train the logistic regression model.<br />
- The Gradient descent method takes steps proportional to the negative of the gradient of a function at a given point, in order to iteratively minimize the objective function.<br /> The gradient generalizes the notion of derivative to the case where the derivative is with respect to a vector: the gradient of $f$ is the vector containing all of the partial derivatives, denoted $\nabla_{\boldsymbol{x}}f(\boldsymbol{x})$.<br /></p>
+<h3 id="Gradient-Descent-for-Logistic-Regression">Gradient Descent for Logistic Regression<a class="anchor-link" href="#Gradient-Descent-for-Logistic-Regression"> </a></h3><p>We will use Gradient Descent to train the logistic regression model.
+ The Gradient descent method takes steps proportional to the negative of the gradient of a function at a given point, in order to iteratively minimize the objective function.The gradient generalizes the notion of derivative to the case where the derivative is with respect to a vector: the gradient of $f$ is the vector containing all of the partial derivatives, denoted $\nabla_{\boldsymbol{x}}f(\boldsymbol{x})$.</p>
 <p>The directional derivative in direction $\boldsymbol{u}$ (a unit vector) is the slope of the function $f$ in direction $\boldsymbol{u}$. In other words, the directional derivative is the derivative of the function $f(\boldsymbol{x} + \sigma \boldsymbol{u})$ with respect to $\sigma$ close to 0. To minimize $f$, we would like to find the direction in which $f$ decreases the fastest. We can do this using the directional derivative:
 $$
-    \large \min_{\boldsymbol{u}, \boldsymbol{u}^\top \boldsymbol{u} = 1}{\boldsymbol{u}^\top \nabla_{\boldsymbol{x}} f(\boldsymbol{x})}
-$$<br />
-$$    \large = \min_{\boldsymbol{u}, \boldsymbol{u}^\top \boldsymbol{u} = 1}{||\boldsymbol{u}||_2 ||\nabla_{\boldsymbol{x}}f(\boldsymbol{x})||_2 \cos \theta}$$<br />
+    \min_{\boldsymbol{u}, \boldsymbol{u}^\top \boldsymbol{u} = 1}{\boldsymbol{u}^\top \nabla_{\boldsymbol{x}} f(\boldsymbol{x})}
+$$
+
+$$     = \min_{\boldsymbol{u}, \boldsymbol{u}^\top \boldsymbol{u} = 1}{||\boldsymbol{u}||_2 ||\nabla_{\boldsymbol{x}}f(\boldsymbol{x})||_2 \cos \theta}$$
+
 ignoring factors that do not depend on $\boldsymbol{u}$, this simplifies to $\min_{u}{\cos \theta}$. This is minimized when $\boldsymbol{u}$ points in the opposite direction as the gradient. Each step of the gradient descent method proposes a new point:
 $$
-    \large \boldsymbol{x'} = \boldsymbol{x} - \epsilon \nabla_{\boldsymbol{x}}f(\boldsymbol{x})
-$$<br />
-where $\epsilon$ is the learning rate.<br />
+     \boldsymbol{x'} = \boldsymbol{x} - \epsilon \nabla_{\boldsymbol{x}}f(\boldsymbol{x})
+$$
+where $\epsilon$ is the learning rate.
 In the context of logistic regression, the gradient descent is as follow:
 $$
-    \large \boldsymbol{w} = \boldsymbol{w} - \epsilon \nabla_{\boldsymbol{w}}L(\boldsymbol{\theta})
-$$<br />
+     \boldsymbol{w} = \boldsymbol{w} - \epsilon \nabla_{\boldsymbol{w}}L(\boldsymbol{\theta})
+$$
 where:
 $$
-    \large \nabla_{\boldsymbol{w}}L(\boldsymbol{\theta}) = \nabla_{\boldsymbol{w}}\left(-\frac{1}{N}\sum_{i=1}^{n}\boldsymbol{y_i}\log(\hat{\boldsymbol{y}}_i) + (1 - \boldsymbol{y_i})\log(1 - \hat{\boldsymbol{y}}_i)\right)
-$$<br />
+    \nabla_{\boldsymbol{w}}L(\boldsymbol{\theta}) = \nabla_{\boldsymbol{w}}\left(-\frac{1}{N}\sum_{i=1}^{n}\boldsymbol{y_i}\log(\hat{\boldsymbol{y}}_i) + (1 - \boldsymbol{y_i})\log(1 - \hat{\boldsymbol{y}}_i)\right)
 $$
-    \large = \frac{1}{N}\boldsymbol{X}^\top(\sigma(\boldsymbol{X}\boldsymbol{w}) - \boldsymbol{y})
-$$<br />
-Here is a nice explanation of how to find the gradient of the binary cross entropy:<br />
-<a href="https://www.youtube.com/watch?v=hWLdFMccpTY">https://www.youtube.com/watch?v=hWLdFMccpTY</a></p>
+$$
+    = \frac{1}{N}\boldsymbol{X}^\top(\sigma(\boldsymbol{X}\boldsymbol{w}) - \boldsymbol{y})
+$$
+Here is a nice explanation of how to find the gradient of the binary cross entropy throug this <a href="https://www.youtube.com/watch?v=hWLdFMccpTY">link</a>.</p>
 
 </div>
 </div>
@@ -1109,8 +1109,8 @@ weighted avg       0.78      0.78      0.77       192
 <h3 id="Polynomial-Logistic-Regression">Polynomial Logistic Regression<a class="anchor-link" href="#Polynomial-Logistic-Regression"> </a></h3><p>In this section, we will add some polynomial features to the logistic regressor.
 It is the same principle as the logistic regression except that $\boldsymbol{X}$ is the concatenation of $\boldsymbol{X_1} \dots \boldsymbol{X_m}$ where $m$ is the degree of the polynomial function and $\boldsymbol{w}$ is the concatenation of $\boldsymbol{w_1} \dots \boldsymbol{w_m}$ such as:
 $$
-    \large \boldsymbol{y} = \sigma(\boldsymbol{w}_0 + \boldsymbol{X}\boldsymbol{w}_1 + \boldsymbol{X}^2\boldsymbol{w}_2 + \dots + \boldsymbol{X}^m\boldsymbol{w}_m)
-$$<br />
+    \boldsymbol{y} = \sigma(\boldsymbol{w}_0 + \boldsymbol{X}\boldsymbol{w}_1 + \boldsymbol{X}^2\boldsymbol{w}_2 + \dots + \boldsymbol{X}^m\boldsymbol{w}_m)
+$$
 This method is still linear because predicting $\hat{y} = \sigma(\boldsymbol{X}\boldsymbol{w})$ is still linear in the parameters.</p>
 
 </div>
@@ -1291,10 +1291,10 @@ weighted avg       0.78      0.77      0.75       192
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h3><p>The polynomial logistic regression model overfitted compared to the classic logistic regression model because it lost 1% accuracy on the test set.<br />
-For some very highly correlated data, logistic regression without polynomial features has better performance than with polynomial features.<br />
-Logistic regression is a very simple and interpretable model suited as a baseline in most classification problems.<br />
-However, it does not perform well when the feature space is large. In fact, it is difficult to compute feature transformation (such as polynomials) when the data doesn't fit in ram.<br /></p>
+<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h3><p>The polynomial logistic regression model overfitted compared to the classic logistic regression model because it lost 1% accuracy on the test set.
+For some very highly correlated data, logistic regression without polynomial features has better performance than with polynomial features.
+Logistic regression is a very simple and interpretable model suited as a baseline in most classification problems.
+However, it does not perform well when the feature space is large. In fact, it is difficult to compute feature transformation (such as polynomials) when the data doesn't fit in ram.</p>
 
 </div>
 </div>
