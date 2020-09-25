@@ -164,7 +164,7 @@ window.onload = wrap_img;
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The CarDekho dataset contains information about used cars listed on the website of the same name.<br />
+<p>The CarDekho dataset contains information about used cars listed on the website of the same name.
 This dataset has 301 unique entities with the following features:</p>
 <ul>
 <li>car name</li>
@@ -176,7 +176,7 @@ This dataset has 301 unique entities with the following features:</p>
 <li>transmission: such as manual or automatic</li>
 <li>owner: how many times the car changed owner</li>
 </ul>
-<p>The goal of this experiment is to train a linear model to predict the selling price of a car.<br />
+<p>The goal of this experiment is to train a linear model to predict the selling price of a car.
 We will use the framework Pytorch for the matrix calculus.</p>
 
 </div>
@@ -590,7 +590,7 @@ from sklearn.model_selection import train_test_split</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Most of the variables are highly correlated.<br />
+<p>Most of the variables are highly correlated.
 As expected, the present price variable is the most correlated with the target selling price.</p>
 
 </div>
@@ -645,9 +645,9 @@ As expected, the present price variable is the most correlated with the target s
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Most of the features are highly correlated to each other.<br />
-Some outliers are present but as there is very few, we will keep them in the training set.<br />
-The year feature have a polynomial correlation with the selling price.<br />
+<p>Most of the features are highly correlated to each other.
+Some outliers are present but as there is very few, we will keep them in the training set.
+The year feature have a polynomial correlation with the selling price.
 A polynomial regression will most likely overperform a linear regression.</p>
 
 </div>
@@ -688,16 +688,16 @@ A polynomial regression will most likely overperform a linear regression.</p>
 <h3 id="Train-a-multivariate-linear-regression">Train a multivariate linear regression<a class="anchor-link" href="#Train-a-multivariate-linear-regression"> </a></h3><p>Training a linear model using least square regression is equivalent to minimize the mean squared error:</p>
 $$
 \begin{align}
-    \large \text{Mse}(\boldsymbol{\hat{y}}, \boldsymbol{y}) &amp;= \frac{1}{n}\sum_{i=1}^{n}{||\hat{y}_i - y_i ||_{2}^{2}} \\
+    \text{Mse}(\boldsymbol{\hat{y}}, \boldsymbol{y}) &amp;= \frac{1}{n}\sum_{i=1}^{n}{||\hat{y}_i - y_i ||_{2}^{2}} \\
     &amp;= \frac{1}{n}||\boldsymbol{X}\boldsymbol{w} - \boldsymbol{y} ||_2^2
 \end{align}
-$$<p>where $n$ is the number of samples, $\hat{y}$ is the predicted value of the model and $y$ is the true target.<br />
-The prediction $\hat{y}$ is obtained by matrix multiplication between the input $\boldsymbol{X}$ and the weights of the model $\boldsymbol{w}$.<br /></p>
+$$<p>where $n$ is the number of samples, $\hat{y}$ is the predicted value of the model and $y$ is the true target.
+The prediction $\hat{y}$ is obtained by matrix multiplication between the input $\boldsymbol{X}$ and the weights of the model $\boldsymbol{w}$.</p>
 <p>Minimizing the $\text{Mse}$ can be achieved by solving the gradient of this equation equals to zero in regards to the weights $\boldsymbol{w}$:</p>
 $$
 \begin{align}
-    \large \nabla_{\boldsymbol{w}}\text{Mse} &amp;= 0 \\
-    \large (\boldsymbol{X}^\top \boldsymbol{X})^{-1}\boldsymbol{X}^\top \boldsymbol{y} &amp;= \boldsymbol{w}
+    \nabla_{\boldsymbol{w}}\text{Mse} &amp;= 0 \\
+    (\boldsymbol{X}^\top \boldsymbol{X})^{-1}\boldsymbol{X}^\top \boldsymbol{y} &amp;= \boldsymbol{w}
 \end{align}
 $$<p>For more information on how to find $\boldsymbol{w}$ please visit the following <a href="https://en.wikipedia.org/wiki/Least_squares#Linear_least_squares:~:text=A%20regression%20model%20is%20a%20linear%20one%20when%20the%20model%20comprises%20a%20linear%20combination%20of%20the%20parameters">link</a>.</p>
 
@@ -847,7 +847,7 @@ MAE Test:	 1.2941011190414429
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The model has an error of 1.29 on average on the training test.<br />
+<p>The model has an error of 1.29 on average on the training test.
 Not bad for a linear model, taking into consideration that the mean of the present price is 7.62.</p>
 
 </div>
@@ -855,10 +855,10 @@ Not bad for a linear model, taking into consideration that the mean of the prese
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Principal-component-analysis-visualization">Principal component analysis visualization<a class="anchor-link" href="#Principal-component-analysis-visualization"> </a></h3><p>In this section, we will use PCA to reduce the number of feature to two, in order to visualize the plane of the linear regressor.<br /></p>
-<p>Suppose a collection of $m$ points $\{\boldsymbol{x}^{(1)}, \dots, \boldsymbol{x}^{(m)}\}$ in $\mathbb{R}^n$.<br />
-The principal components analysis aims to reduce the dimensionality of the points while losing the least precision as possible.<br />
-For each point $\boldsymbol{x}^{(i)} \in \mathbb{R}^n$ we will find a corresponding code vector $\boldsymbol{c}^{(i)} \in \mathbb{R}^l$ where $l$ is smaller than $n$.<br />
+<h3 id="Principal-component-analysis-visualization">Principal component analysis visualization<a class="anchor-link" href="#Principal-component-analysis-visualization"> </a></h3><p>In this section, we will use PCA to reduce the number of feature to two, in order to visualize the plane of the linear regressor.</p>
+<p>Suppose a collection of $m$ points $\{\boldsymbol{x}^{(1)}, \dots, \boldsymbol{x}^{(m)}\}$ in $\mathbb{R}^n$.
+The principal components analysis aims to reduce the dimensionality of the points while losing the least precision as possible.
+For each point $\boldsymbol{x}^{(i)} \in \mathbb{R}^n$ we will find a corresponding code vector $\boldsymbol{c}^{(i)} \in \mathbb{R}^l$ where $l$ is smaller than $n$.
 Let $f$ be the encoding function and $g$ be the decoding function and $\boldsymbol{D} \in \mathbb{R}^{n,l}$ is the decoding matrix whose columns are orthonormal:
 $$
 \begin{align}
@@ -957,7 +957,7 @@ $$</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we recreate the prediction plane using three points of the prediction.<br />
+<p>Here we recreate the prediction plane using three points of the prediction.
 More information at this <a href="http://kitchingroup.cheme.cmu.edu/blog/2015/01/18/Equation-of-a-plane-through-three-points">link</a>.</p>
 
 </div>
@@ -1025,7 +1025,7 @@ More information at this <a href="http://kitchingroup.cheme.cmu.edu/blog/2015/01
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Exploratory-Data-Analysis">Exploratory Data Analysis<a class="anchor-link" href="#Exploratory-Data-Analysis"> </a></h3><p>We made an attempt to discard some features based on p-value but it didn't improve the results.<br />
+<h3 id="Exploratory-Data-Analysis">Exploratory Data Analysis<a class="anchor-link" href="#Exploratory-Data-Analysis"> </a></h3><p>We made an attempt to discard some features based on p-value but it didn't improve the results.
 More on p-value <a href="https://www.statsdirect.com/help/basics/p_values.htm#:~:text=The%20P%20value%2C%20or%20calculated,the%20hypothesis%20is%20being%20tested">here</a>.</p>
 
 </div>
@@ -1133,8 +1133,8 @@ MSE Test:	 3.8332533836364746
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A linear regression can perform pretty well if the data is highly correlated.<br />
-It is an appropriate method as a baseline in the majority of the regression tasks.<br />
+<p>A linear regression can perform pretty well if the data is highly correlated.
+It is an appropriate method as a baseline in the majority of the regression tasks.
 The pvalue is not always a good indicator for feature selection.</p>
 
 </div>
