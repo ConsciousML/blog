@@ -805,9 +805,8 @@ In fact, if some features have higher values than other, they will contribute mo
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="K-Nearest-Neighbors">K-Nearest Neighbors<a class="anchor-link" href="#K-Nearest-Neighbors"> </a></h3><p>The K-nearest neighbors classifier looks at the $K^{th}$ closest points in the training set of an input $x$<br />
 counts how many members of each class are present and returns the empirical fraction as the estimate.
-$$\large p(\mathbf{y} = c|\boldsymbol{\mathbf{x}}, D, K) = \frac{1}{K} \sum_{i \in N_K(\boldsymbol{\mathbf{x}}, D)}\mathbb{I}(y_i = c)$$<br />
+$$p(\mathbf{y} = c|\boldsymbol{\mathbf{x}}, D, K) = \frac{1}{K} \sum_{i \in N_K(\boldsymbol{\mathbf{x}}, D)}\mathbb{I}(y_i = c)$$<br />
 $$
-\large
 \mathbb{I}(e) =
 \begin{cases}
     1 &amp; \text{if}\;e\;\text{is true}\\
