@@ -335,16 +335,16 @@ In a real world application, we would have standardize the data performing the f
 <p>The approach, K-means follows to solve this problem is called Expectation-Maximization. The E-step assign each point to a cluster, and the M-step refines the values of the centroid based on the points inside each cluster.</p>
 <p>More formally, the objective function to minimize is as follows:
 $$
-    \large J = \sum_{i=1}^{m} \sum_{k=1}^{K} \mathbb{I}(z_i = k)||x_i - \mu_k||_2^2
+    J = \sum_{i=1}^{m} \sum_{k=1}^{K} \mathbb{I}(z_i = k)||x_i - \mu_k||_2^2
 $$
 where $z_i$ is the cluster assigned to $x_i$ and $\mu_k$ is the mean of the cluster $k$.</p>
 <p>The E-step is defined as:
 $$
-    \large z_i^{*} = \text{argmin}_{k} ||x_i - \mu_k||_2^2
+    z_i^{*} = \text{argmin}_{k} ||x_i - \mu_k||_2^2
 $$</p>
 <p>And the M-step is defined as:
 $$
-    \large \mu_k = \frac{1}{\sum_{i=1}^m \mathbb{I}(z_i = k)} \sum_{i=1}^m  x_i\mathbb{I}(z_i = k)
+    \mu_k = \frac{1}{\sum_{i=1}^m \mathbb{I}(z_i = k)} \sum_{i=1}^m  x_i\mathbb{I}(z_i = k)
 $$</p>
 <p>In practice, we should run multiple K-means with different initialization of the centroids and keep the parameters that minimizes the objective function. Since K-means is a distance based algorithm, is it mandatory to standardize the data.</p>
 
@@ -491,7 +491,6 @@ Let's see if we can get a better result using a Gaussian Mixture model.</p>
 The EM algorithm is a general technique for finding maximum likelihood solutions for probabilistic models having latent variables. EM is an iterative algorithm that starts from an initial estimate of the parameters of a probabilistic model $\boldsymbol{\theta}$ and then proceeds to iteratively update $\boldsymbol{\theta}$ until convergence. This algorithm consists to iteratively apply an expectation step and a maximization step.</p>
 <p>Let's consider the EM algorithm for a multivariate Gaussian Mixture model with $K$ mixture components, observed variables $\boldsymbol{X}$ and latent variables $\boldsymbol{Z}$ such as:</p>
 $$
-\large
 \begin{aligned}
     P(\boldsymbol{x}_i | \boldsymbol{\theta}) &amp;= \sum_{k=1}^{K} \pi_k P(\boldsymbol{x}_i | \boldsymbol{z}_i, \boldsymbol{\theta}_k)\\
     &amp;= \sum_{k=1}^{K} P(\boldsymbol{z}_i = k) \mathcal{N}(\boldsymbol{x}_i; \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
@@ -499,12 +498,10 @@ $$
 $$<p>where each component of the mixture model is the normal distribution.
 Let's see why the MLE of a gaussian mixture model is hard to compute. The likelihood of a gaussian mixture distribution is:
 $$
-\large
     L(\boldsymbol{\theta} | \boldsymbol{X}) = \prod_{i=1}^N\sum_{k=1}^{K} \pi_k \mathcal{N}(\boldsymbol{x}_i; \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
 $$</p>
 <p>This the log-likelihood is as follows:
 $$
-\large
     \mathcal{L}(\boldsymbol{\theta} | \boldsymbol{X}) = \sum_{i=1}^N \log\left(\sum_{k=1}^{K} \pi_k \mathcal{N}(\boldsymbol{x}_i; \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)\right)
 $$</p>
 <p>Because of the sum inside the $\log$, we cannot estimate $\boldsymbol{\mu}_k$ and $\boldsymbol{\sigma^2}$ without knowing $\boldsymbol{Z}$. That is why we would use EM in this kind of situation.</p>
@@ -512,18 +509,15 @@ $$</p>
 components of the mixture model. Whereas the maximization step, known as M-step, re-evaluate the parameters of each mixture component based on the estimated values generated in the E-step.</p>
 <p>More formally, during the E-step, we calculate the likelihood of each data point using the estimated parameters:
 $$
-\large
     f(\boldsymbol{x_i}|\mu_k, \boldsymbol{\Sigma}_k) = \frac{1}{\sqrt{(2\pi)^m|\boldsymbol{\Sigma}_k|}} \exp\left(-\frac{(\boldsymbol{x}_i - \boldsymbol{\mu}_k)^\top \boldsymbol{\Sigma}_k^{-1}(\boldsymbol{x}_i - \boldsymbol{\mu}_k)}{2}\right)
 $$
 where $m$ is the number of features in the input data.</p>
 <p>Then we compute the probability that $\boldsymbol{x}_i$ came from the $k^{th}$ gaussian distribution:
 $$
-\Large
     p_{ik} = \frac{\pi_k f(\boldsymbol{x_i}|\mu_k, \boldsymbol{\Sigma}_k)}{\sum_{j=1}^{K} \pi_j f(\boldsymbol{x_i}|\mu_j, \boldsymbol{\Sigma}_j)}
 $$</p>
 <p>For the M-step, we update the parameters of the mixture as follows:
 $$
-\Large
 \begin{aligned}
     \pi_k &amp;= \frac{1}{N}\sum_{i=1}^{N} p_{ik}\\
     \boldsymbol{\mu}_k &amp;= \frac{1}{\sum_{i=1}^{N} p_{ik}} \sum_{i=1}^{N} p_{ik} \boldsymbol{x_i}\\
