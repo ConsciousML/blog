@@ -160,7 +160,7 @@ window.onload = wrap_img;
         
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>During this experiment, we will implement the K-means clustering and gaussian mixture model algorithms from scratch using Pytorch.<br />
+<p>During this experiment, we will implement the K-means clustering and gaussian mixture model algorithms from scratch using Pytorch.
 The data used for training the unsupervised models was generated to show the distinction between K-means and Gaussian Mixture.</p>
 
 </div>
@@ -297,8 +297,8 @@ The data used for training the unsupervised models was generated to show the dis
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Standardize-the-data">Standardize the data<a class="anchor-link" href="#Standardize-the-data"> </a></h2><p>The K-means method is a distance based clustering approach.<br />
-It is mandatory to standardize the data to prevent the features with higher values to contribute more than the others.<br />
+<h2 id="Standardize-the-data">Standardize the data<a class="anchor-link" href="#Standardize-the-data"> </a></h2><p>The K-means method is a distance based clustering approach.
+It is mandatory to standardize the data to prevent the features with higher values to contribute more than the others.
 In a real world application, we would have standardize the data performing the following lines.</p>
 
 </div>
@@ -333,19 +333,19 @@ In a real world application, we would have standardize the data performing the f
 <li>change the centroids values based on the points present in each cluster and repeat the previous step until the centroids do not change anymore</li>
 </ul>
 <p>The approach, K-means follows to solve this problem is called Expectation-Maximization. The E-step assign each point to a cluster, and the M-step refines the values of the centroid based on the points inside each cluster.</p>
-<p>More formally, the objective function to minimize is as follows:<br />
+<p>More formally, the objective function to minimize is as follows:
 $$
     \large J = \sum_{i=1}^{m} \sum_{k=1}^{K} \mathbb{I}(z_i = k)||x_i - \mu_k||_2^2
-$$<br />
+$$
 where $z_i$ is the cluster assigned to $x_i$ and $\mu_k$ is the mean of the cluster $k$.</p>
-<p>The E-step is defined as:<br />
+<p>The E-step is defined as:
 $$
     \large z_i^{*} = \text{argmin}_{k} ||x_i - \mu_k||_2^2
-$$<br /></p>
-<p>And the M-step is defined as:<br />
+$$</p>
+<p>And the M-step is defined as:
 $$
     \large \mu_k = \frac{1}{\sum_{i=1}^m \mathbb{I}(z_i = k)} \sum_{i=1}^m  x_i\mathbb{I}(z_i = k)
-$$<br /></p>
+$$</p>
 <p>In practice, we should run multiple K-means with different initialization of the centroids and keep the parameters that minimizes the objective function. Since K-means is a distance based algorithm, is it mandatory to standardize the data.</p>
 
 </div>
@@ -479,7 +479,7 @@ $$<br /></p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The result is pretty satisfying. Each cluster is well separated from each other.<br />
+<p>The result is pretty satisfying. Each cluster is well separated from each other.
 Let's see if we can get a better result using a Gaussian Mixture model.</p>
 
 </div>
@@ -487,42 +487,41 @@ Let's see if we can get a better result using a Gaussian Mixture model.</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Gaussian-Mixture-Model">Gaussian Mixture Model<a class="anchor-link" href="#Gaussian-Mixture-Model"> </a></h3><p>In order to understand how we train a Gaussian Mixture model, we must explain the expectation-maximization algorithm (EM) first.<br />
+<h3 id="Gaussian-Mixture-Model">Gaussian Mixture Model<a class="anchor-link" href="#Gaussian-Mixture-Model"> </a></h3><p>In order to understand how we train a Gaussian Mixture model, we must explain the expectation-maximization algorithm (EM) first.
 The EM algorithm is a general technique for finding maximum likelihood solutions for probabilistic models having latent variables. EM is an iterative algorithm that starts from an initial estimate of the parameters of a probabilistic model $\boldsymbol{\theta}$ and then proceeds to iteratively update $\boldsymbol{\theta}$ until convergence. This algorithm consists to iteratively apply an expectation step and a maximization step.</p>
-<p>Let's consider the EM algorithm for a multivariate Gaussian Mixture model with $K$ mixture components, observed variables $\boldsymbol{X}$ and latent variables $\boldsymbol{Z}$ such as:<br /></p>
+<p>Let's consider the EM algorithm for a multivariate Gaussian Mixture model with $K$ mixture components, observed variables $\boldsymbol{X}$ and latent variables $\boldsymbol{Z}$ such as:</p>
 $$
 \large
 \begin{aligned}
     P(\boldsymbol{x}_i | \boldsymbol{\theta}) &amp;= \sum_{k=1}^{K} \pi_k P(\boldsymbol{x}_i | \boldsymbol{z}_i, \boldsymbol{\theta}_k)\\
     &amp;= \sum_{k=1}^{K} P(\boldsymbol{z}_i = k) \mathcal{N}(\boldsymbol{x}_i; \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
 \end{aligned}
-$$<p><br />
-where each component of the mixture model is the normal distribution.
-Let's see why the MLE of a gaussian mixture model is hard to compute. The likelihood of a gaussian mixture distribution is:<br />
+$$<p>where each component of the mixture model is the normal distribution.
+Let's see why the MLE of a gaussian mixture model is hard to compute. The likelihood of a gaussian mixture distribution is:
 $$
 \large
     L(\boldsymbol{\theta} | \boldsymbol{X}) = \prod_{i=1}^N\sum_{k=1}^{K} \pi_k \mathcal{N}(\boldsymbol{x}_i; \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
-$$<br /></p>
-<p>This the log-likelihood is as follows:<br />
+$$</p>
+<p>This the log-likelihood is as follows:
 $$
 \large
     \mathcal{L}(\boldsymbol{\theta} | \boldsymbol{X}) = \sum_{i=1}^N \log\left(\sum_{k=1}^{K} \pi_k \mathcal{N}(\boldsymbol{x}_i; \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)\right)
-$$<br /></p>
+$$</p>
 <p>Because of the sum inside the $\log$, we cannot estimate $\boldsymbol{\mu}_k$ and $\boldsymbol{\sigma^2}$ without knowing $\boldsymbol{Z}$. That is why we would use EM in this kind of situation.</p>
 <p>The EM algorithm has two steps, the expectation step known as E-step, assigns to each data point the probability that they belong to each
 components of the mixture model. Whereas the maximization step, known as M-step, re-evaluate the parameters of each mixture component based on the estimated values generated in the E-step.</p>
-<p>More formally, during the E-step, we calculate the likelihood of each data point using the estimated parameters:<br />
+<p>More formally, during the E-step, we calculate the likelihood of each data point using the estimated parameters:
 $$
 \large
     f(\boldsymbol{x_i}|\mu_k, \boldsymbol{\Sigma}_k) = \frac{1}{\sqrt{(2\pi)^m|\boldsymbol{\Sigma}_k|}} \exp\left(-\frac{(\boldsymbol{x}_i - \boldsymbol{\mu}_k)^\top \boldsymbol{\Sigma}_k^{-1}(\boldsymbol{x}_i - \boldsymbol{\mu}_k)}{2}\right)
-$$<br />
+$$
 where $m$ is the number of features in the input data.</p>
-<p>Then we compute the probability that $\boldsymbol{x}_i$ came from the $k^{th}$ gaussian distribution:<br />
+<p>Then we compute the probability that $\boldsymbol{x}_i$ came from the $k^{th}$ gaussian distribution:
 $$
 \Large
     p_{ik} = \frac{\pi_k f(\boldsymbol{x_i}|\mu_k, \boldsymbol{\Sigma}_k)}{\sum_{j=1}^{K} \pi_j f(\boldsymbol{x_i}|\mu_j, \boldsymbol{\Sigma}_j)}
-$$<br /></p>
-<p>For the M-step, we update the parameters of the mixture as follows:<br />
+$$</p>
+<p>For the M-step, we update the parameters of the mixture as follows:
 $$
 \Large
 \begin{aligned}
