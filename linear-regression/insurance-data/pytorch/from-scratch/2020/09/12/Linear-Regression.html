@@ -350,7 +350,7 @@ We will train the model on insurance data to predict the total payment received 
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Two outliers are present between 100 and 125 number of claims.<br />
+<p>Two outliers are present between 100 and 125 number of claims.
 We will keep them in the training set.</p>
 
 </div>
@@ -488,9 +488,13 @@ We will keep them in the training set.</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We will train a least square regressor on one dimension using the above formula:<br />
-$\large y = b_0 + b_1x$ <br />
-$\large b_1 = \frac{\text{Cov}(x, y)}{Var(x)} = \frac{\sum_i{(x_i - \mathbb{E}[x]) * (y_i - \mathbb{E}[y])}}{\sum_i{(x_i - \mathbb{E}[x])^2}}$<br />
+<p>We will train a least square regressor on one dimension using the above formula:
+$$
+    \begin{align}
+    y &amp;= b_0 + b_1x \\
+    b_1 &amp;= \frac{\text{Cov}(x, y)}{Var(x)} = \frac{\sum_i{(x_i - \mathbb{E}[x]) * (y_i - \mathbb{E}[y])}}{\sum_i{(x_i - \mathbb{E}[x])^2}}
+    \end{align}
+$$
 where the expectation $\mathbb{E}[x]$ of a vector of random variables is its mean.</p>
 
 </div>
@@ -648,7 +652,7 @@ Test MSE:	 1279.6766357421875
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The train and test MSE are close to each other.<br />
+<p>The train and test MSE are close to each other.
 The model neither underfit nor overfit.</p>
 
 </div>
@@ -656,8 +660,8 @@ The model neither underfit nor overfit.</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h3><p>Linear regression is a simple and interpretable model that fits very well the purpose of a baseline.<br />
-As we have seen during this experiment, if the features are highly correlated to the target, linear regression performs pretty well.<br /></p>
+<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h3><p>Linear regression is a simple and interpretable model that fits very well the purpose of a baseline.
+As we have seen during this experiment, if the features are highly correlated to the target, linear regression performs pretty well.</p>
 
 </div>
 </div>
