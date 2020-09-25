@@ -1044,38 +1044,38 @@ It makes more sense to try to predict the weekly consumption of students so we c
 The naive bayes classifier assumes that the data is conditionally independant given the class label i.e $p(\boldsymbol{x}|y=c)$.
 This assumption allows us to write the class conditional density as a product:<br />
 $$
-    \large p(\boldsymbol{x} | y = c, \boldsymbol{\theta}) = \prod_{i=1}^{K}p(x_i | y_i = c, \boldsymbol{\theta}_{ic})
-$$<br />
+    p(\boldsymbol{x} | y = c, \boldsymbol{\theta}) = \prod_{i=1}^{K}p(x_i | y_i = c, \boldsymbol{\theta}_{ic})
+$$
 The model is called “naive” since we do not expect the features to be independent, even conditional on the class label.</p>
 <p>Assuming the bayes theorem:<br />
 $$
-    \large P(A|B) = \frac{P(A)P(B|A)}{P(B)}
-$$<br />
+    P(A|B) = \frac{P(A)P(B|A)}{P(B)}
+$$
 To have an easier understanding of the relation between the training of a model and the bayes theorem, let's reformulate this equation in terms of class and samples:
 $$
-    \large P(\text{class}|\text{sample}) = \frac{P(\text{class})P(\text{sample}|\text{class})}{P(\text{sample})}
-$$<br />
-Given a new sample, we want to predict its class. We will compute $P(\text{sample}|\text{class})P(\text{sample})$ according to the training data.<br />
+    P(\text{class}|\text{sample}) = \frac{P(\text{class})P(\text{sample}|\text{class})}{P(\text{sample})}
+$$
+Given a new sample, we want to predict its class. We will compute $P(\text{sample}|\text{class})P(\text{sample})$ according to the training data.
 When predicting, we utilize the following approximation:<br />
 $$
-    \large P(c_j|x_i) \sim P(c_j)P(x_i|c_j)\dots P(x_D|c_j)
-$$<br /></p>
+    P(c_j|x_i) \sim P(c_j)P(x_i|c_j)\dots P(x_D|c_j)
+$$</p>
 <p>In other words, for each potential class, we multiply the probability of the class (prior) with the probability of finding each features of $x_i$ in each class $c_j$ (posterior).</p>
 <p>For categorical or binay features, we group the training samples according to each class
 The form of the class-conditional density depends on the type of each feature. We give some possibilities below:</p>
 <ul>
 <li>For real values, we can use the Gaussian distribution:<br />
 $$
-  \large p(\boldsymbol{x} | y = c, \boldsymbol{\theta}) = \prod_{i=1}^{D} \mathcal{N}(x_i| \mu_{ic}, \sigma_{ic}^2)
-$$<br /></li>
+  p(\boldsymbol{x} | y = c, \boldsymbol{\theta}) = \prod_{i=1}^{D} \mathcal{N}(x_i| \mu_{ic}, \sigma_{ic}^2)
+$$</li>
 <li>For binary values, we can use a Bernouilli distribution, where $\mu_{ic}$ is the probability that feature $i$ occurs in class $c$:<br />
 $$
-  \large p(\boldsymbol{x} | y = c, \boldsymbol{\theta}) = \prod_{i=1}^{D} \text{Ber}(x_i | \mu_{ic}) 
-$$<br /></li>
+  p(\boldsymbol{x} | y = c, \boldsymbol{\theta}) = \prod_{i=1}^{D} \text{Ber}(x_i | \mu_{ic}) 
+$$</li>
 <li>For categorical features, we can use a Multinouilli distribution, where $\boldsymbol{\mu}_{ic}$ is an histogram over the possible values for $x_i$ in class $c$:<br />
 $$
-  \large p(\boldsymbol{x} | y = c, \boldsymbol{\theta}) = \prod_{i=1}^{D}\text{Cat}(x_i | \boldsymbol{\mu}_{ic})
-$$<br /></li>
+  p(\boldsymbol{x} | y = c, \boldsymbol{\theta}) = \prod_{i=1}^{D}\text{Cat}(x_i | \boldsymbol{\mu}_{ic})
+$$</li>
 </ul>
 <p>These are the training steps:</p>
 <ul>

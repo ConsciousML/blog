@@ -496,13 +496,14 @@ Let's see if we can get a better result using a Gaussian Mixture model.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Gaussian-Mixture-Model">Gaussian Mixture Model<a class="anchor-link" href="#Gaussian-Mixture-Model"> </a></h3><p>In order to understand how we train a Gaussian Mixture model, we must explain the expectation-maximization algorithm (EM) first.
 The EM algorithm is a general technique for finding maximum likelihood solutions for probabilistic models having latent variables. EM is an iterative algorithm that starts from an initial estimate of the parameters of a probabilistic model $\boldsymbol{\theta}$ and then proceeds to iteratively update $\boldsymbol{\theta}$ until convergence. This algorithm consists to iteratively apply an expectation step and a maximization step.</p>
-<p>Let's consider the EM algorithm for a multivariate Gaussian Mixture model with $K$ mixture components, observed variables $\boldsymbol{X}$ and latent variables $\boldsymbol{Z}$ such as:</p>
+<p>Let's consider the EM algorithm for a multivariate Gaussian Mixture model with $K$ mixture components, observed variables $\boldsymbol{X}$ and latent variables $\boldsymbol{Z}$ such as:
 $$
 \begin{aligned}
     P(\boldsymbol{x}_i | \boldsymbol{\theta}) &amp;= \sum_{k=1}^{K} \pi_k P(\boldsymbol{x}_i | \boldsymbol{z}_i, \boldsymbol{\theta}_k)\\
     &amp;= \sum_{k=1}^{K} P(\boldsymbol{z}_i = k) \mathcal{N}(\boldsymbol{x}_i; \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
 \end{aligned}
-$$<p>where each component of the mixture model is the normal distribution.
+$$
+where each component of the mixture model is the normal distribution.
 Let's see why the MLE of a gaussian mixture model is hard to compute. The likelihood of a gaussian mixture distribution is:
 $$
     L(\boldsymbol{\theta} | \boldsymbol{X}) = \prod_{i=1}^N\sum_{k=1}^{K} \pi_k \mathcal{N}(\boldsymbol{x}_i; \boldsymbol{\mu}_k, \boldsymbol{\Sigma}_k)
