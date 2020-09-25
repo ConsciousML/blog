@@ -330,7 +330,8 @@ where $r$ is the coefficient of the polynomial and $d$ its degree, while $\sigma
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Hard-Margin-Classifier">Hard Margin Classifier<a class="anchor-link" href="#Hard-Margin-Classifier"> </a></h2><p>Support vector machines} were originally designed for binary classification but can be extended to regression and multi-class classification.
 SVMs are not probabilistic models, their output is a raw prediction. We will only discuss how SVMs work for classification. Let's get the basic intuition with the help of the following figure.</p>
-<div style="text-align:center"><img src="images/300px-SVM_margin.png" /></div><p>SVMs separate the data in two classes using a hyperplane. The distance between the dotted hyperplanes and the hyperplane at the center is known as margin.
+<p><img src="/blog/images/copied_from_nb/images/300px-SVM_margin.png" alt="title" /></p>
+<p>SVMs separate the data in two classes using a hyperplane. The distance between the dotted hyperplanes and the hyperplane at the center is known as margin.
 A margins is passing by one of multiple points, these points are known as support vectors.
 Any point above the red hyperplane will be classified as $1$ respectively $-1$ for the points below the hyperplane.
 In order to predict on an input sample $\boldsymbol{x}$, we compute the linear equation:
@@ -410,7 +411,8 @@ $$</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Soft-Margin-Classifier">Soft Margin Classifier<a class="anchor-link" href="#Soft-Margin-Classifier"> </a></h2><p>Soft-margin classifiers introduce slack variables $\zeta_i \geq 0$ as $\zeta_i = |y_i - f_i|$ to allow the classifier to mis-classify some samples.</p>
-<div style="text-align:center"><img src="images/softmargin.png" /></div><p>In fact, we allow the model to make mistakes to be able to separate non linearly separable data where:</p>
+<p><img src="/blog/images/copied_from_nb/images/softmargin.png" alt="title" /></p>
+<p>In fact, we allow the model to make mistakes to be able to separate non linearly separable data where:</p>
 <ul>
 <li>$\zeta_i = 0$ means that the point lies in the correct margin boundary.</li>
 <li>$0 &lt; \zeta_i \leq 1$ the point lies inside the margin and on the correct side.</li>
