@@ -298,9 +298,9 @@ We will go through the math behind the SVM method and test out the kernel RBF an
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-kernel-Trick">The kernel Trick<a class="anchor-link" href="#The-kernel-Trick"> </a></h2><p>First let's define the kernel trick to understand the magic of SVMs.
+<h2 id="The-kernel-Trick">The kernel Trick<a class="anchor-link" href="#The-kernel-Trick"> </a></h2><p>First let's define the kernel trick to understand the magic behind SVMs.
 A kernel function $\kappa(\boldsymbol{x}, \boldsymbol{x^{'}})$ is a measure of similarity between two objects $\boldsymbol{x}, \boldsymbol{x^{'}} \in \chi$ where $\chi$ is an abstract space of higher dimension. Let's assume that we have $\boldsymbol{X}$ a non-linearly separable data. We would like to transform the data into a higher dimensional space to make it linearly separable. Let us define $\phi$ a function that maps the data into a higher dimensional space. A classical approach would be to compute $\phi(\boldsymbol{X})$ but this transformation may be very computationally heavy. Instead we use the kernel trick.</p>
-<p>The kernel trick method stands for calculating the relationship of data in higher dimension without actually transforming the data in this target space. The kernel trick reduces the amount of computation required for kernelized algorithms. The main idea is, instead of computing $\phi(\boldsymbol{X})$, we will compute the dot product $\phi(\boldsymbol{X}_i)^\top\phi(\boldsymbol{X}_j)$ for all the components of $\boldsymbol{X}$. In other words, we will know the relationship of the data in higher dimension, without ever computing the transformation of the whole data.</p>
+<p>The kernel trick method stands for calculating the relationship of data in higher dimension without actually transforming the whole data. The kernel trick reduces the amount of computation required for kernelized algorithms. The main idea is, instead of computing $\phi(\boldsymbol{X})$, we will compute the dot product $\phi(\boldsymbol{X}_i)^\top\phi(\boldsymbol{X}_j)$ for all the components of $\boldsymbol{X}$. In other words, we will know the relationship of the data in higher dimension, without ever computing the transformation of the whole data.</p>
 <p>The kernel function is defined as:
 $$
 \kappa(\boldsymbol{x}, \boldsymbol{x^{'}}) = \phi(\boldsymbol{x})^\top \phi(\boldsymbol{x^{'}})
@@ -328,11 +328,11 @@ where $r$ is the coefficient of the polynomial and $d$ its degree, while $\sigma
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Hard-Margin-Classifier">Hard Margin Classifier<a class="anchor-link" href="#Hard-Margin-Classifier"> </a></h2><p>Support vector machines} were originally designed for binary classification but can be extended to regression and multi-class classification.
+<h2 id="Hard-Margin-Classifier">Hard Margin Classifier<a class="anchor-link" href="#Hard-Margin-Classifier"> </a></h2><p>Support vector machines were originally designed for binary classification but can be extended to regression and multi-class classification.
 SVMs are not probabilistic models, their output is a raw prediction. We will only discuss how SVMs work for classification. Let's get the basic intuition with the help of the following figure.</p>
 <p><img src="/blog/images/copied_from_nb/images/300px-SVM_margin.png" alt="title" /></p>
 <p>SVMs separate the data in two classes using a hyperplane. The distance between the dotted hyperplanes and the hyperplane at the center is known as margin.
-A margins is passing by one of multiple points, these points are known as support vectors.
+A margin is passing by one or multiple points, these points are known as support vectors.
 Any point above the red hyperplane will be classified as $1$ respectively $-1$ for the points below the hyperplane.
 In order to predict on an input sample $\boldsymbol{x}$, we compute the linear equation:
 $$
@@ -352,7 +352,7 @@ $$
         \frac{\boldsymbol{w}^\top}{||\boldsymbol{w}||} (\boldsymbol{x}_2 - \boldsymbol{x}_1) &amp;= \frac{2}{||\boldsymbol{w}||}
     \end{align}
 $$</p>
-<p>In other words, the optimization problem to solve when training an SVM is to solve the optimization problem known as primal
+<p>In other words, we need to solve the optimization problem known as primal:
 $$
     \begin{equation}
         \min_{\boldsymbol{w}, b}\frac{1}{2}||\boldsymbol{w}||^2 \quad \text{s.t} \quad y_i(\boldsymbol{w}^\top \boldsymbol{x}_i + b) \geq 1, \quad \forall i \in \{1, \dots, N\}
@@ -366,8 +366,8 @@ The condition ensures that all samples are on the right side of the hyperplane. 
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Primal-form-to-Dual-form">Primal form to Dual form<a class="anchor-link" href="#Primal-form-to-Dual-form"> </a></h2><p>The primal for is not suited to implementation because of the fact that it is a constrained optimization.
-We can use the generalized Lagrangian to get its dual form that more feasible constrained:
+<h2 id="Primal-form-to-Dual-form">Primal form to Dual form<a class="anchor-link" href="#Primal-form-to-Dual-form"> </a></h2><p>The primal form is can be transformed to the dual for which is more suited for implementation.
+We can use the generalized Lagrangian to get the dual form that has more feasible constrains:
 $$
     \begin{equation}
         \min_{\boldsymbol{x}, b}L(\boldsymbol{x}, b, \boldsymbol{\sigma}) = \frac{1}{2}||\boldsymbol{w}||^2 - \sum_{i=1}^{N} \sigma_i y_i(\boldsymbol{w}^\top \phi(\boldsymbol{x}_i) + b - 1)
@@ -387,7 +387,7 @@ $$
         \max_{\boldsymbol{\sigma}}\min_{\boldsymbol{x}, b}L(\boldsymbol{x}, b, \boldsymbol{\sigma}) \sim \min_{\boldsymbol{w}}f(\boldsymbol{x})
     \end{equation}
 $$</p>
-<p>By substituting the formulas that we got thanks to the KKT conditions in $L$ we get the final dual form:
+<p>By substituting the formulas that we got while solving1 the KKT conditions in $L$ we get the final dual form:
 $$
     \begin{align}
         &amp;\max_{\boldsymbol{\sigma}} \: \sum_{i=1}^{N}\sigma_i - \frac{1}{2} \sum_{i=1}^{N}\sum_{j=1}^{N} \sigma_i \sigma_j y_i y_j \phi(\boldsymbol{x}_i)^\top \phi(\boldsymbol{x}_j) \\
@@ -479,8 +479,7 @@ where $h$ is a column of ones, $\boldsymbol{A}$ contains the labels and $\boldsy
 <li>To predict, compute:
 $$
   y_{test} = \text{sign}\left(\boldsymbol{w}^\top \phi({\boldsymbol{x}_{test}}) + b \right)
-$$
-CVXOPT form:</li>
+$$</li>
 </ul>
 <p>In matrix form the dual optimization is:
 $$
@@ -532,7 +531,7 @@ $$</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">SupportVectorClassifier</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Class for both the hard margin and soft margin classifier</span>
+    <span class="sd">&quot;&quot;&quot;Class for both the hard margin and soft margin classifiers</span>
 <span class="sd">    </span>
 <span class="sd">    Attributes:</span>
 <span class="sd">        kernel: A function for the kernel function to apply.</span>
@@ -540,7 +539,7 @@ $$</p>
 <span class="sd">        sv_sigma: A torch tensor for the slack variables of the support vectors.</span>
 <span class="sd">        sv: A torch tensor for the features of the support vectors.</span>
 <span class="sd">        sv_y: A torch tensor for the labels of the support vectors.</span>
-<span class="sd">        w: A torch tensor for the weights of the model, only used if using a linear kernel.</span>
+<span class="sd">        w: A torch tensor for the weights of the model, only used if the kernel is linear.</span>
 <span class="sd">        b: A float for the bias.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kernel</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -591,8 +590,8 @@ $$</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">sv</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">sv_idx</span><span class="p">,</span> <span class="p">:]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sv_y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">sv_idx</span><span class="p">]</span>
        
-        <span class="c1"># If linear kernel, compute w, otherwise compute it in pairs with</span>
-        <span class="c1"># the data to predict</span>
+        <span class="c1"># If linear kernel, compute w, otherwise calculate it in pairwise</span>
+        <span class="c1"># fashion once we predict</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span> <span class="o">==</span> <span class="n">linear_kernel</span><span class="p">:</span>
             <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sv_y</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sv_sigma</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sv</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -929,7 +928,7 @@ Optimal solution found.
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The soft margin classifier places the classification plane in the middle of the two cluster in the direction of highest variable. Well done !</p>
+<p>The soft margin classifier places the classification plane in the middle of the two cluster in the direction of highest variance. Well done !</p>
 
 </div>
 </div>
@@ -950,7 +949,7 @@ Optimal solution found.
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">generate_non_linear</span><span class="p">(</span><span class="n">mean_1</span><span class="p">,</span> <span class="n">mean_2</span><span class="p">,</span> <span class="n">mean_3</span><span class="p">,</span> <span class="n">mean_4</span><span class="p">,</span> <span class="n">cov</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Generates non linear data from gaussian distributions</span>
 <span class="sd">    </span>
-<span class="sd">    Mean 1 to 4 is the generate 4 clusters and cov is their covariance matrix.</span>
+<span class="sd">    Mean 1 to 4 is are the means that generate 4 clusters and cov is their covariance matrix.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">X_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean_1</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
     <span class="n">X_1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">X_1</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean_3</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="mi">50</span><span class="p">)))</span>
@@ -1037,7 +1036,7 @@ Optimal solution found.
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Evn the linear soft margin model cannot fit well this data. For solving this problem we will use the kernel radial basis function (RBF).</p>
+<p>Even the linear soft margin model cannot fit well this data. For solving this problem we will use the kernel radial basis function (RBF).</p>
 
 </div>
 </div>
@@ -1194,7 +1193,7 @@ Optimal solution found.
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h2><p>Support Vector Machines have a variety of kernel to fit the most complex data. These work really well when there is a clear margin of separation between classes and are very effective on data with high dimensionality. Unfortunately, SVMs are not suited for large scale datasets due to their computational complexity. Furthermore, there is no probabilistic explanation of their prediction and they do not perform well on very noisy data.</p>
+<h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h2><p>Support Vector Machines have a variety of kernels to fit the most complex data. SVMs work really well when there is a clear margin of separation between classes and are very effective on data with high dimensionality. Unfortunately, SVMs are not suited for large scale datasets due to their computational complexity. Furthermore, there is no probabilistic explanation of their prediction and they do not perform well on very noisy data.</p>
 
 </div>
 </div>
