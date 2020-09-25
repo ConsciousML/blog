@@ -247,19 +247,19 @@ window.onload = wrap_img;
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Create-the-polynomial-features">Create the polynomial features<a class="anchor-link" href="#Create-the-polynomial-features"> </a></h3><p>The formula of linear regression is as follow:<br />
+<h3 id="Create-the-polynomial-features">Create the polynomial features<a class="anchor-link" href="#Create-the-polynomial-features"> </a></h3><p>The formula of linear regression is as follow:
 $$
     \boldsymbol{\hat{y}} = \boldsymbol{X}\boldsymbol{w}
-$$<br />
-where $\boldsymbol{\hat{y}}$ is the target, $\boldsymbol{w}$ are the weights learned by the model and $\boldsymbol{X}$ is training data.<br />
-Polynomial regression is still considered as a linear regression because there is only linear learning parameters:<br />
+$$
+where $\boldsymbol{\hat{y}}$ is the target, $\boldsymbol{w}$ are the weights learned by the model and $\boldsymbol{X}$ is training data.
+Polynomial regression is still considered as a linear regression because there is only linear learning parameters:
 $$
     \boldsymbol{y} = \boldsymbol{w}_0 + \boldsymbol{X}\boldsymbol{w}_1 + \boldsymbol{X}^2\boldsymbol{w}_2 + \dots + \boldsymbol{X}^n\boldsymbol{w}_n
-$$<br />
+$$
 As you have probably guessed, this equation is not linear. We use a trick to make it linear:</p>
 <ul>
 <li>We gather all the $\boldsymbol{X}^2$ to $\boldsymbol{X}^n$ as new features that we created and we concatenate them to $\boldsymbol{X}$.</li>
-<li>All the $\boldsymbol{w}_1$ to $\boldsymbol{w}_n$ are concatenated to $\boldsymbol{w}_0$.<br /></li>
+<li>All the $\boldsymbol{w}_1$ to $\boldsymbol{w}_n$ are concatenated to $\boldsymbol{w}_0$.</li>
 </ul>
 <p>At the end, the polynomial regression has the same formula as the linear regression but with the aggregated arrays.</p>
 
@@ -321,8 +321,8 @@ $$
     \text{Mse}(\hat{y}, y) &amp;= \frac{1}{n}\sum_{i=1}^{n}{||\hat{y}_i - y_i ||_{2}^{2}} \\
     \text{Mse}(\hat{y}, y) &amp;= \frac{1}{n}||\boldsymbol{X}\boldsymbol{w} - \boldsymbol{y} ||_2^2
 \end{align}
-$$<p>where $n$ is the number of samples, $\hat{y}$ is the predicted value of the model and $y$ is the true target.<br />
-The prediction $\hat{y}$ is obtained by matrix multiplication between the input $\boldsymbol{X}$ and the weights of the model $\boldsymbol{w}$.<br /></p>
+$$<p>where $n$ is the number of samples, $\hat{y}$ is the predicted value of the model and $y$ is the true target.
+The prediction $\hat{y}$ is obtained by matrix multiplication between the input $\boldsymbol{X}$ and the weights of the model $\boldsymbol{w}$.</p>
 <p>Minimizing the $\text{Mse}$ can be achieved by solving the gradient of this equation equals to zero in regards to the weights $\boldsymbol{w}$:</p>
 $$
 \begin{align}
@@ -403,7 +403,7 @@ $$<p>For more information on how to find $\boldsymbol{w}$ please visit the secti
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Method-2:-Gradient-Descent">Method 2: Gradient Descent<a class="anchor-link" href="#Method-2:-Gradient-Descent"> </a></h3><p>The Gradient descent method takes steps proportional to the negative of the gradient of a function at a given point, in order to iteratively minimize the objective function.<br /> The gradient generalizes the notion of derivative to the case where the derivative is with respect to a vector: the gradient of $f$ is the vector containing all of the partial derivatives, denoted $\nabla_{\boldsymbol{x}}f(\boldsymbol{x})$.<br /></p>
+<h3 id="Method-2:-Gradient-Descent">Method 2: Gradient Descent<a class="anchor-link" href="#Method-2:-Gradient-Descent"> </a></h3><p>The Gradient descent method takes steps proportional to the negative of the gradient of a function at a given point, in order to iteratively minimize the objective function. The gradient generalizes the notion of derivative to the case where the derivative is with respect to a vector: the gradient of $f$ is the vector containing all of the partial derivatives, denoted $\nabla_{\boldsymbol{x}}f(\boldsymbol{x})$.</p>
 <p>The directional derivative in direction $\boldsymbol{u}$ (a unit vector) is the slope of the function $f$ in direction $\boldsymbol{u}$. In other words, the directional derivative is the derivative of the function $f(\boldsymbol{x} + \sigma \boldsymbol{u})$ with respect to $\sigma$ close to 0. To minimize $f$, we would like to find the direction in which $f$ decreases the fastest. We can do this using the directional derivative:
 $$
 \begin{align}
@@ -414,12 +414,12 @@ $$
 ignoring factors that do not depend on $\boldsymbol{u}$, this simplifies to $\min_{u}{\cos \theta}$. This is minimized when $\boldsymbol{u}$ points in the opposite direction as the gradient. Each step of the gradient descent method proposes a new points:
 $$
 \boldsymbol{x'} = \boldsymbol{x} - \epsilon \nabla_{\boldsymbol{x}}f(\boldsymbol{x})
-$$<br />
-where $\epsilon$ is the learning rate.<br />
+$$
+where $\epsilon$ is the learning rate.
 In the context of polynomial regression, the gradient descent is as follow:
 $$
 \boldsymbol{w} = \boldsymbol{w} - \epsilon \nabla_{\boldsymbol{w}}\text{MSE}
-$$<br />
+$$
 where:
 $$
 \begin{align}
@@ -524,7 +524,7 @@ $$</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h3><p>The polynomial regression is an appropriate example to learn more about the concept of normal equation and gradient descent.<br />
+<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h3><p>The polynomial regression is an appropriate example to learn more about the concept of normal equation and gradient descent.
 This method work well with data that has polynomial shapes but we need to choose the right polynomial degree for a good bias/variance trade-off. However, the polynomial regression method has an important drawback. In fact, it is necessary to transform the data to a higher dimensional space which can be unfeasable if the data is very large.</p>
 
 </div>

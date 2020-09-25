@@ -593,7 +593,7 @@ Exploratory data analysis techniques are also discussed in the last section of t
 <li>density</li>
 <li>volatile acidity</li>
 </ul>
-<p>Most of the features are very highly correlated to each other.<br />
+<p>Most of the features are very highly correlated to each other.
 We will try to select the best features to avoid redundancies using backward elimination further in the notebook.</p>
 
 </div>
@@ -651,8 +651,8 @@ We will try to select the best features to avoid redundancies using backward eli
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Wines between 7 and 9 quality have a higher alcohol values, we will choose this range for the good wines.<br />
-Thus, it looks appropriate to divide the quality label into low, medium and good wines.<br /></p>
+<p>Wines between 7 and 9 quality have a higher alcohol values, we will choose this range for the good wines.
+Thus, it looks appropriate to divide the quality label into low, medium and good wines.</p>
 
 </div>
 </div>
@@ -713,8 +713,8 @@ Thus, it looks appropriate to divide the quality label into low, medium and good
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Isolate-features-from-the-target">Isolate features from the target<a class="anchor-link" href="#Isolate-features-from-the-target"> </a></h3><p>Feature scaling is mandatory when using a K-nearest neighbors model.<br />
-The KNN algorithm has a distance decision based approach to regress or classify an input.<br />
+<h3 id="Isolate-features-from-the-target">Isolate features from the target<a class="anchor-link" href="#Isolate-features-from-the-target"> </a></h3><p>Feature scaling is mandatory when using a K-nearest neighbors model.
+The KNN algorithm has a distance decision based approach to regress or classify an input.
 In fact, if some features have higher values than other, they will contribute more in the overall distance calculation thus biasing the outcome.</p>
 
 </div>
@@ -803,9 +803,11 @@ In fact, if some features have higher values than other, they will contribute mo
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="K-Nearest-Neighbors">K-Nearest Neighbors<a class="anchor-link" href="#K-Nearest-Neighbors"> </a></h3><p>The K-nearest neighbors classifier looks at the $K^{th}$ closest points in the training set of an input $x$<br />
+<h3 id="K-Nearest-Neighbors">K-Nearest Neighbors<a class="anchor-link" href="#K-Nearest-Neighbors"> </a></h3><p>The K-nearest neighbors classifier looks at the $K^{th}$ closest points in the training set of an input $x$
 counts how many members of each class are present and returns the empirical fraction as the estimate.
-$$p(\mathbf{y} = c|\boldsymbol{\mathbf{x}}, D, K) = \frac{1}{K} \sum_{i \in N_K(\boldsymbol{\mathbf{x}}, D)}\mathbb{I}(y_i = c)$$<br />
+
+$$p(\mathbf{y} = c|\boldsymbol{\mathbf{x}}, D, K) = \frac{1}{K} \sum_{i \in N_K(\boldsymbol{\mathbf{x}}, D)}\mathbb{I}(y_i = c)$$
+
 $$
 \mathbb{I}(e) =
 \begin{cases}
@@ -939,16 +941,15 @@ weighted avg       0.82      0.83      0.82      1300
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The KNN achieves a good performance compared to its simplicity.<br /></p>
+<p>The KNN achieves a good performance compared to its simplicity.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Exploratory-Data-Analysis">Exploratory Data Analysis<a class="anchor-link" href="#Exploratory-Data-Analysis"> </a></h3><p>Let's try to discard some features based on p-value but to see if it improves the results.<br />
-More on p-value here:<br />
-<a href="https://www.statsdirect.com/help/basics/p_values.htm#:~:text=The%20P%20value%2C%20or%20calculated,the%20hypothesis%20is%20being%20tested">https://www.statsdirect.com/help/basics/p_values.htm#:~:text=The%20P%20value%2C%20or%20calculated,the%20hypothesis%20is%20being%20tested</a>.</p>
+<h3 id="Exploratory-Data-Analysis">Exploratory Data Analysis<a class="anchor-link" href="#Exploratory-Data-Analysis"> </a></h3><p>Let's try to discard some features based on p-value but to see if it improves the results.
+More on p-value <a href="https://www.statsdirect.com/help/basics/p_values.htm#:~:text=The%20P%20value%2C%20or%20calculated,the%20hypothesis%20is%20being%20tested">here</a>.</p>
 
 </div>
 </div>
@@ -1084,7 +1085,7 @@ weighted avg       0.77      0.77      0.77      1625
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Feature selection based on p-value made the performance worse. From 83% to 77%.<br />
+<p>Feature selection based on p-value made the performance worse. From 83% to 77%.
 We tested with a value $k \in [1, 10]$ and the best result is given $k = 1$.</p>
 
 </div>
@@ -1149,7 +1150,7 @@ weighted avg       0.76      0.77      0.77      1625
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Same result as backward elimination.<br />
+<p>Same result as backward elimination.
 Sometimes all the features are relevant for a given model.</p>
 
 </div>
@@ -1157,10 +1158,10 @@ Sometimes all the features are relevant for a given model.</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h3><p>The K-nearest neighbors algorithm is a simple but rather effective approach in some contexts.<br />
-The KNN method has no training step which is very handy when we have an increasing amount of data.<br />
-In fact, it is not required to train the KNN model.<br />
-However, KNN is not a model to pick when the data has a high dimentionality. Computing the neighbor distances accross a large number of dimension is not effective. This phenomena is also called the "curse of dimensionality".<br />
+<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h3><p>The K-nearest neighbors algorithm is a simple but rather effective approach in some contexts.
+The KNN method has no training step which is very handy when we have an increasing amount of data.
+In fact, it is not required to train the KNN model.
+However, KNN is not a model to pick when the data has a high dimentionality. Computing the neighbor distances accross a large number of dimension is not effective. This phenomena is also called the "curse of dimensionality".
 The KNN model is also uneffective when dealing with outliers.</p>
 
 </div>

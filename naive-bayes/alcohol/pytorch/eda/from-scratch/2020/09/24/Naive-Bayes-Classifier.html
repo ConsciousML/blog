@@ -683,7 +683,7 @@ Based on the linear correlation between the target and the features, the is a te
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The alcohol consumption during workdays is relatively low compared to the weekend consumption. Most students prefer to stay sober during workdays.<br />
+<p>The alcohol consumption during workdays is relatively low compared to the weekend consumption. Most students prefer to stay sober during workdays.
 Let's see how those behaviors have an impact on students success and life.</p>
 
 </div>
@@ -737,7 +737,7 @@ Let's see how those behaviors have an impact on students success and life.</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Students who does not drink alcohol during weekdays usually study more than those who do.<br />
+<p>Students who does not drink alcohol during weekdays usually study more than those who do.
 But the amount of study hours of students who does not drink during weekend is much more than the ones who do.</p>
 
 </div>
@@ -800,7 +800,7 @@ But the amount of study hours of students who does not drink during weekend is m
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Students who drink two times or more a week have a tendency to be more absent in class.<br /></p>
+<p>Students who drink two times or more a week have a tendency to be more absent in class.</p>
 
 </div>
 </div>
@@ -866,8 +866,8 @@ But the amount of study hours of students who does not drink during weekend is m
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Students who drink even a little during workdays have lower grades than those who do not.<br />
-The impact on grades is much more important for students with severe consumption.<br /></p>
+<p>Students who drink even a little during workdays have lower grades than those who do not.
+The impact on grades is much more important for students with severe consumption.</p>
 
 </div>
 </div>
@@ -935,8 +935,8 @@ The impact on grades is much more important for students with severe consumption
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Converting-alcohol-consumption-to-a-categorical-label">Converting alcohol consumption to a categorical label<a class="anchor-link" href="#Converting-alcohol-consumption-to-a-categorical-label"> </a></h3><p>The original label goes from 1 to 5 from no consumption to severe consumption.<br />
-It makes more sense to try to predict the weekly consumption of students so we combined the two attributes by summing them.<br /></p>
+<h3 id="Converting-alcohol-consumption-to-a-categorical-label">Converting alcohol consumption to a categorical label<a class="anchor-link" href="#Converting-alcohol-consumption-to-a-categorical-label"> </a></h3><p>The original label goes from 1 to 5 from no consumption to severe consumption.
+It makes more sense to try to predict the weekly consumption of students so we combined the two attributes by summing them.</p>
 <p>The fourth values seems like a good threshold to create two categorical classes:</p>
 <ul>
 <li>$[2, 3]$ little alcohol consumption </li>
@@ -1042,12 +1042,12 @@ It makes more sense to try to predict the weekly consumption of students so we c
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Naive-Bayes-Classifier">Naive Bayes Classifier<a class="anchor-link" href="#Naive-Bayes-Classifier"> </a></h3><p>Considering a vector of discrete values $\boldsymbol{x} \in \{1, \dots, K\}^D$, where $K$ is the number of samples and $D$ the number of features.
 The naive bayes classifier assumes that the data is conditionally independant given the class label i.e $p(\boldsymbol{x}|y=c)$.
-This assumption allows us to write the class conditional density as a product:<br />
+This assumption allows us to write the class conditional density as a product:
 $$
     p(\boldsymbol{x} | y = c, \boldsymbol{\theta}) = \prod_{i=1}^{K}p(x_i | y_i = c, \boldsymbol{\theta}_{ic})
 $$
 The model is called “naive” since we do not expect the features to be independent, even conditional on the class label.</p>
-<p>Assuming the bayes theorem:<br />
+<p>Assuming the bayes theorem:
 $$
     P(A|B) = \frac{P(A)P(B|A)}{P(B)}
 $$
@@ -1056,7 +1056,7 @@ $$
     P(\text{class}|\text{sample}) = \frac{P(\text{class})P(\text{sample}|\text{class})}{P(\text{sample})}
 $$
 Given a new sample, we want to predict its class. We will compute $P(\text{sample}|\text{class})P(\text{sample})$ according to the training data.
-When predicting, we utilize the following approximation:<br />
+When predicting, we utilize the following approximation:
 $$
     P(c_j|x_i) \sim P(c_j)P(x_i|c_j)\dots P(x_D|c_j)
 $$</p>
@@ -1064,15 +1064,15 @@ $$</p>
 <p>For categorical or binay features, we group the training samples according to each class
 The form of the class-conditional density depends on the type of each feature. We give some possibilities below:</p>
 <ul>
-<li>For real values, we can use the Gaussian distribution:<br />
+<li>For real values, we can use the Gaussian distribution:
 $$
   p(\boldsymbol{x} | y = c, \boldsymbol{\theta}) = \prod_{i=1}^{D} \mathcal{N}(x_i| \mu_{ic}, \sigma_{ic}^2)
 $$</li>
-<li>For binary values, we can use a Bernouilli distribution, where $\mu_{ic}$ is the probability that feature $i$ occurs in class $c$:<br />
+<li>For binary values, we can use a Bernouilli distribution, where $\mu_{ic}$ is the probability that feature $i$ occurs in class $c$:
 $$
   p(\boldsymbol{x} | y = c, \boldsymbol{\theta}) = \prod_{i=1}^{D} \text{Ber}(x_i | \mu_{ic}) 
 $$</li>
-<li>For categorical features, we can use a Multinouilli distribution, where $\boldsymbol{\mu}_{ic}$ is an histogram over the possible values for $x_i$ in class $c$:<br />
+<li>For categorical features, we can use a Multinouilli distribution, where $\boldsymbol{\mu}_{ic}$ is an histogram over the possible values for $x_i$ in class $c$:
 $$
   p(\boldsymbol{x} | y = c, \boldsymbol{\theta}) = \prod_{i=1}^{D}\text{Cat}(x_i | \boldsymbol{\mu}_{ic})
 $$</li>
@@ -1280,7 +1280,7 @@ $$</li>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h3><p>Even if the naive bayes model makes a strong assumption that the features are conditionaly independant given the class label, it achieved almost 57% accuracy on three output classes.<br />
+<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion"> </a></h3><p>Even if the naive bayes model makes a strong assumption that the features are conditionaly independant given the class label, it achieved almost 57% accuracy on three output classes.
 This model does not perform as well as the more sophisticated models but it is very fast and suited as a baseline model for most classification tasks.
 On the other hand, naive bayes models can be descent predictors but they are considered as bad estimators i.e the output probabilities are not to be taken seriously.
 The naive bayes technique is performing better than logistic regression on small datasets, whereas it is the opposite for large datasets.</p>
