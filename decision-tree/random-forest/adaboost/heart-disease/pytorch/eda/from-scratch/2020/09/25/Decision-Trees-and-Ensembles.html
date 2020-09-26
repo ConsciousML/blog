@@ -96,7 +96,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      25 min read
+      26 min read
     
 </span></p>
 
@@ -277,7 +277,8 @@ Fourteen features were selected among 76 attributes:</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">columns</span> <span class="o">=</span> <span class="p">{</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># The data does not include the columns names, we did a little trick to add them</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;63.0&#39;</span> <span class="p">:</span> <span class="s1">&#39;age&#39;</span><span class="p">,</span>
     <span class="s1">&#39;1.0&#39;</span> <span class="p">:</span> <span class="s1">&#39;sex&#39;</span><span class="p">,</span>
     <span class="s1">&#39;1.0.1&#39;</span> <span class="p">:</span> <span class="s1">&#39;cp&#39;</span><span class="p">,</span>
@@ -316,7 +317,8 @@ Fourteen features were selected among 76 attributes:</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">hdisease</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">hdisease</span><span class="p">[</span><span class="s1">&#39;disease&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;disease&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Remove the severity of the disease, 0: healthy, 1: sick</span>
+<span class="n">hdisease</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">hdisease</span><span class="p">[</span><span class="s1">&#39;disease&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;disease&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="c1"># Setting gather unknown value and assign a new class for them</span>
 <span class="n">hdisease</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">hdisease</span><span class="p">[</span><span class="s1">&#39;ca&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;?&#39;</span><span class="p">,</span> <span class="s1">&#39;ca&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">4.0</span>
@@ -637,7 +639,8 @@ The rule to perform a split on a node is as follows:</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">is_categorical</span> <span class="o">=</span> <span class="p">[]</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Check which data are categorical or not</span>
+<span class="n">is_categorical</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">hdisease</span><span class="o">.</span><span class="n">columns</span><span class="p">:</span>
     <span class="c1"># If less than 9 unique values, than the feature is categorical</span>
     <span class="n">is_categorical</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">hdisease</span><span class="p">[</span><span class="n">col</span><span class="p">]))</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">))</span>
@@ -659,7 +662,8 @@ The rule to perform a split on a node is as follows:</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">hdisease</span><span class="o">.</span><span class="n">values</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Convert data to numpy</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">hdisease</span><span class="o">.</span><span class="n">values</span>
 <span class="c1"># Get unique values of the target</span>
 <span class="n">utarget</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">from_numpy</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">data</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
@@ -1031,8 +1035,7 @@ The rule to perform a split on a node is as follows:</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Just a wrapper for our node class</span>
-<span class="k">class</span> <span class="nc">DecisionTreeClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">DecisionTreeClassifier</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Class for the Decision Tree Classifier</span>
 <span class="sd">    </span>
 <span class="sd">    Class that implements the sklearn methods</span>
