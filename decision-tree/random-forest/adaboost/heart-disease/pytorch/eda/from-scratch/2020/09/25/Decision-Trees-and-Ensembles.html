@@ -617,16 +617,15 @@ To understand how to grow a tree, we must introduce the gini index first.
 Assuming that $D$ is the data in a leaf and $N$ the number of samples in $D$, we estimate the class-conditional probability as follow:
 $$
     \hat{\pi}_c = \frac{1}{N} \sum_{i \in D}\mathbb{I}(y_i = c)
-$$<br />
-where $c$ are the classes of the target. The Gini index of a given leaf is:<br />
 $$
-    \large G_{l} = \sum_{c=1}^{C}\hat{\pi}_c(1 -\hat{\pi}_c) = 1 - \sum_{c=1}^{C}\hat{\pi}^2_c
+where $c$ are the classes of the target. The Gini index of a given leaf is:
+$$
+    G_{l} = \sum_{c=1}^{C}\hat{\pi}_c(1 -\hat{\pi}_c) = 1 - \sum_{c=1}^{C}\hat{\pi}^2_c
 $$</p>
 <p>To have the Gini index of a split, we compute the Gini index on each of its leaves and multiply each of them by the proportion of samples in each leaves and sum both values:</p>
 $$
-    \large G_{Node} = \sum_{i=1}^{K} \frac{k_{li}}{U}G_{li}
-$$<p><br />
-where $K$ is the number of leaves of the node, $k_{li}$ is the number of samples in the leaf $i^{th}$ leaf and $U$ is the number of sample to split.</p>
+    G_{Node} = \sum_{i=1}^{K} \frac{k_{li}}{U}G_{li}
+$$<p>where $K$ is the number of leaves of the node, $k_{li}$ is the number of samples in the leaf $i^{th}$ leaf and $U$ is the number of sample to split.</p>
 <p>In the case of categorical inputs, the most common approach is to consider the split condition as $x_{ij} = c_k$ or $x_{ij} \neq c_k$, for each possible class label $c_k$.
 The rule to perform a split on a node is as follows:</p>
 <ul>
@@ -1188,7 +1187,7 @@ The rule to perform a split on a node is as follows:</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We just fit the whole data to the model to visualize the structure of the tree.<br />
+<p>We just fit the whole data to the model to visualize the structure of the tree.
 In the next section, we will validate the performance of the model using cross validation and have an interpretation of the tree structure.</p>
 
 </div>
@@ -1255,7 +1254,7 @@ The model uses lower correlated variable such as 'chol' and 'testbps' inside the
 <h3 id="Random-Forest">Random Forest<a class="anchor-link" href="#Random-Forest"> </a></h3><p>Random forest is a technique known as bootstrap aggregating (bagging) which consists in taking multiple different models and compute the ensemble prediction:</p>
 $$
     f(\boldsymbol{x}) = \sum_{i = 0}^{M}f_m(\boldsymbol{x})
-$$<p>where $f_m$ is the $m^{th}$ model.<br />
+$$<p>where $f_m$ is the $m^{th}$ model.
 The random forest technique is an ensemble model using decision trees as base learners. This ensemble model tries to decorrelate the base
 learners by learning trees on a randomly chosen subset of features, as well as a randomly chosen subset of samples.</p>
 <p>In other words, to train a random forest, we create $m$ subsets of the training set where we can select multiple times the same samples. These subsets are known as boostrapped datasets. Finally, each base learner is trained in the same fashion as a decision tree except that at each node, when we perform the split, we randomly choose a fixed number of features from the data.</p>
@@ -1409,7 +1408,7 @@ Test accuracy:	0.8342076502732242, nb features:	7, max depth:	 3
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>After a quick parameter search, the best model achieves 84.4% accuracy. A great improvement of 3% comparing to a single decision tree.<br />
+<p>After a quick parameter search, the best model achieves 84.4% accuracy. A great improvement of 3% comparing to a single decision tree.
 To go further we will try a technique known as boosting.</p>
 
 </div>
@@ -1420,35 +1419,33 @@ To go further we will try a technique known as boosting.</p>
 <h3 id="Boosting">Boosting<a class="anchor-link" href="#Boosting"> </a></h3><p>Boosting is an algorithm using multiple weak learners. A weak learner is defined to be slightly better than random guessing. The most common weak learner is known as a  stamp. A stamp is an univariate tree with only one split. The purpose of boosting is to sequentially apply the weak classification algorithm to repeatedly modified versions of the data.</p>
 <p>The predictions from the weak learners are combined through a weighted majority vote:</p>
 $$
-   \large f(\boldsymbol{x}) = \text{sign}\left(\sum_{m=1}^{M}\alpha_m f_m(\boldsymbol{x})\right)
+   f(\boldsymbol{x}) = \text{sign}\left(\sum_{m=1}^{M}\alpha_m f_m(\boldsymbol{x})\right)
 $$<p>where $f(\boldsymbol{x})$ is the prediction of the final model, $f_m(\boldsymbol{x})$ is the prediction of the weak learner $m$ and $\{\alpha_1, \dots, \alpha_M\}$ are the weights computed by the boosting algorithm. Their effect is to give higher influence to the more accurate 
 learners. This formula represent the prediction in case of a binary classification $\{-1, 1\}$</p>
 <p>The data modification consists of applying weights $\{\boldsymbol{w_1}, \dots, \boldsymbol{w_N}\}$ to each training samples. Initially the weights are set to $\frac{1}{N}$ where $N$ is the number of samples. At iteration $k$, we perform a data transformation using the weights on each training samples. We fit the data into the model and the samples that were misclassified by the learner $f_{k-1}$ have their weights increased while the samples that were well classified by $f_{k-1}$ have their weights decreased. The importance of the harder samples sequentially increase and the learners are forced to concentrate on the observation that are missed on the previous iterations.</p>
 <p>AdaBoost, short for Adaptative Boosting, is the first boosting technique that got popular for being able to adapt to the weak learners.
 In this algorithm, after fitting the weak learner $m$, we compute the weighted error:</p>
 $$
-    \large \text{err}_m = \frac{1}{N}\sum_{i=1}^{N}w_i I\left(y_i \neq f_m(\boldsymbol{x_i})\right)
+    \text{err}_m = \frac{1}{N}\sum_{i=1}^{N}w_i I\left(y_i \neq f_m(\boldsymbol{x_i})\right)
 $$<p>Then we set the weights of the model in the final prediction based on its performance:</p>
 $$
-    \large \alpha_m = \log\left(\frac{1 - \text{err}_m}{\text{err}_m}\right)
+    \alpha_m = \log\left(\frac{1 - \text{err}_m}{\text{err}_m}\right)
 $$<p>Finally, we update the weights of each samples as follow:</p>
 $$
-    \large
     \begin{align}
-    w_i = w_i * \exp(\alpha_m I\left(y_i \neq f_m(\boldsymbol{x}_i)\right)\\
-    w_i = w_i * \exp(-\alpha_m I\left(y_i = f_m(\boldsymbol{x}_i)\right)
+    w_i &amp;= w_i * \exp(\alpha_m I\left(y_i \neq f_m(\boldsymbol{x}_i)\right)\\
+    w_i &amp;= w_i * \exp(-\alpha_m I\left(y_i = f_m(\boldsymbol{x}_i)\right)
     \end{align}
-$$<p>The importance of the weak learner's weight is proportional to its performance during training.<br />
-In fact, if $err_m$ is low then $\alpha_m$ is high and the values of the sample weights $w_1, \dots, w_N$ get modified by a higher margin.<br />
-The misclassified samples are scaled up and the well classified samples are scaled down so that the learner will focus on the weakness of the previous one.<br /></p>
+$$<p>The importance of the weak learner's weight is proportional to its performance during training.
+In fact, if $err_m$ is low then $\alpha_m$ is high and the values of the sample weights $w_1, \dots, w_N$ get modified by a higher margin.
+The misclassified samples are scaled up and the well classified samples are scaled down so that the learner will focus on the weakness of the previous one.</p>
 <p>Inside the stamps, the splits are selected according to the weighted gini split:</p>
 $$
-    \large
     \begin{align}
     \hat{\pi}_c = \frac{1}{\sum_{i=1}^{N}w_i} \sum_{i \in D}w_i\mathbb{I}(y_i = c)\\
     \text{G} = 1 - \sum_{c=1}^{C}\hat{\pi}^2_c
     \end{align}
-$$<p>Here the samples with high weights contribute more to the gini index than the lower ones.<br /></p>
+$$<p>Here the samples with high weights contribute more to the gini index than the lower ones.</p>
 
 </div>
 </div>
