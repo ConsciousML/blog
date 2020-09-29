@@ -6,7 +6,7 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: Home
+title: ConsciousML
 description: A blog about from scratch implementation of machine learning algorithms. 
 github_username: ConsciousML
 # you can comment the below line out if your repo name is not different than your baseurl
@@ -49,7 +49,7 @@ use_math: true
 show_description: true
 
 # Set this to true to display image previews on home page, if they exist
-show_image: false
+show_image: true
 
 # Set this to true to turn on annotations with hypothes.is (https://web.hypothes.is/)
 annotations: false
@@ -72,7 +72,7 @@ include:
 # This specifies what badges are turned on by default for notebook posts.
 default_badges:
   github: true
-  binder: ture
+  binder: true
   colab: true
 
 # Escape HTML in post descriptions
