@@ -7,7 +7,7 @@
 # https://learnxinyminutes.com/docs/yaml/
 
 title: Home
-description: A blog with some from scratch implementation of machine learning algorithms. 
+description: A blog about from scratch implementation of machine learning algorithms. 
 github_username: ConsciousML
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "blog"
