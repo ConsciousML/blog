@@ -6,8 +6,8 @@
 # https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
 # https://learnxinyminutes.com/docs/yaml/
 
-title: Axel Mendoza Blog
-description: 
+title: Home
+description: A blog with some from scratch implementation of machine learning algorithms. 
 github_username: ConsciousML
 # you can comment the below line out if your repo name is not different than your baseurl
 github_repo: "blog"
@@ -40,6 +40,7 @@ baseurl: "/blog" # the subpath of your site, e.g. "/blog".
 minima:
   social_links:
     github: ConsciousML
+    linkedin: https://www.linkedin.com/in/axel-mendoza-298608121/
 
 # Set this to true to get LaTeX math equation support
 use_math: true
@@ -71,7 +72,7 @@ include:
 # This specifies what badges are turned on by default for notebook posts.
 default_badges:
   github: true
-  binder: true
+  binder: ture
   colab: true
 
 # Escape HTML in post descriptions
