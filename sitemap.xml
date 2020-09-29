@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>https://consciousml.github.io/blog/logistic-regression/polynomial-regression/diabetes/pytorch/from-scratch/2020/09/07/Logistic-Regression.html</loc>
+<loc>https://consciousml.github.io/blog/linear-regression/insurance-data/pytorch/from-scratch/2020/09/07/Linear-Regression.html</loc>
 <lastmod>2020-09-07T00:00:00-05:00</lastmod>
 </url>
 <url>
 <loc>https://consciousml.github.io/blog/linear-regression/car-price/pca/pytorch/from-scratch/2020/09/10/Multivariate-Linear-Regression.html</loc>
 <lastmod>2020-09-10T00:00:00-05:00</lastmod>
+</url>
+<url>
+<loc>https://consciousml.github.io/blog/logistic-regression/polynomial-regression/diabetes/pytorch/from-scratch/2020/09/12/Logistic-Regression.html</loc>
+<lastmod>2020-09-12T00:00:00-05:00</lastmod>
 </url>
 <url>
 <loc>https://consciousml.github.io/blog/knn/wine-quality/pytorch/eda/from-scratch/2020/09/13/K-Nearest-Neigbors.html</loc>
