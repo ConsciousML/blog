@@ -40,7 +40,7 @@ baseurl: "/blog" # the subpath of your site, e.g. "/blog".
 minima:
   social_links:
     github: ConsciousML
-    linkedin: "https://www.linkedin.com/in/axel-mendoza-298608121/"
+    linkedin: "axel-mendoza-298608121"
 
 # Set this to true to get LaTeX math equation support
 use_math: true
