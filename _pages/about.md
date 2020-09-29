@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About Me
-permalink: /about/
+permalink: https://www.linkedin.com/in/axel-mendoza-298608121/
 ---
 
 This website is powered by **[fastpages](https://github.com/fastai/fastpages)** [^1].
