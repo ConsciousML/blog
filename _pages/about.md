@@ -8,5 +8,5 @@ Hi, I’m [Axel Mendoza](https://www.linkedin.com/in/axel-mendoza-298608121/). A
 I'm a fervent computer vision practitioner as well as an avid meditator.
 I participated in the creation of machine learning pipelines in well-known companies such a Siemens, Engie and SAP, designed a complex multi-camera vehicle re-identification software that achieved close to state-of-the-art performance in 2018 and contributed to the production of an FDA approved medical solution on coronary calcium classification using X-ray data.
 
-I recently started to dedicate himself to writing blog posts about machine learning and I'm deeply motivated to keep myself knowledgeable about IA and to give the best content to my fellow readers by creating very in-depth posts explaining the maths and the implementation of the most used algorithms in Data Science.
+I recently started to dedicate myself to writing blog posts about machine learning and I'm deeply motivated to keep myself knowledgeable about IA and to give the best content to my fellow readers by creating very in-depth posts explaining the maths and the implementation of the most used algorithms in Data Science.
 
