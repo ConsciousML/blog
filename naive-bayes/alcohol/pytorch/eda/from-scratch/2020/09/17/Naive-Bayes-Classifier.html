@@ -587,12 +587,12 @@ window.onload = wrap_img;
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Just from the correlation heatmap, we can have an overview of the impact of alcohol consumption on students.
-Based on the linear correlation between the target and the features, the is a tendency for students consuming alcohol frequently to have more chance to:</p>
+Based on the linear correlation between the target and the features, there is a tendency for students consuming alcohol frequently to have more chance to:</p>
 <ul>
 <li>have lower grades</li>
 <li>have more absences</li>
 <li>hang out more often</li>
-<li>does not aim to achieve higher education</li>
+<li>not aim to achieve higher education</li>
 <li>study less</li>
 </ul>
 <p>Among all theses cases, the attributes that are the most correlated with the target are the grades, the study time and if the student is a men.</p>
@@ -738,8 +738,8 @@ Let's see how those behaviors have an impact on students success and life.</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Students who does not drink alcohol during weekdays usually study more than those who do.
-But the amount of study hours of students who does not drink during weekend is much more than the ones who do.</p>
+<p>Students who do not drink alcohol during weekdays usually study more than those who do.
+But the amount of study hours of students who do not drink during weekend is much more than the ones who do.</p>
 
 </div>
 </div>
@@ -929,7 +929,8 @@ The impact on grades is much more important for students with severe consumption
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>However, even heavy alcohol consumption during the weekend has little impact on student grades.</p>
+<p>However, even heavy alcohol consumption during the weekend has little impact on student grades.
+Great news ! We can party during the weekend and it does not affect our productivity.</p>
 
 </div>
 </div>
@@ -938,7 +939,7 @@ The impact on grades is much more important for students with severe consumption
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Converting-alcohol-consumption-to-a-categorical-label">Converting alcohol consumption to a categorical label<a class="anchor-link" href="#Converting-alcohol-consumption-to-a-categorical-label"> </a></h3><p>The original label goes from 1 to 5 from no consumption to severe consumption.
 It makes more sense to try to predict the weekly consumption of students so we combined the two attributes by summing them.</p>
-<p>The fourth values seems like a good threshold to create two categorical classes:</p>
+<p>The fourth values seems like a good threshold to create three categorical classes:</p>
 <ul>
 <li>$[2, 3]$ little alcohol consumption </li>
 <li>$[4, 5]$ moderate alcohol consumption</li>
@@ -1004,7 +1005,7 @@ It makes more sense to try to predict the weekly consumption of students so we c
 <span class="n">students</span><span class="o">.</span><span class="n">loc</span><span class="p">[(</span><span class="n">students</span><span class="p">[</span><span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">students</span><span class="p">[</span><span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">),</span> <span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># moderate</span>
 <span class="n">students</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">students</span><span class="p">[</span><span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;alc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>                             <span class="c1"># severe</span>
 
-<span class="c1"># We need to distinguish categorical from numeric values to fit different distribution</span>
+<span class="c1"># We need to distinguish categorical from numeric values to fit different distributions</span>
 <span class="c1"># when we will fit the model</span>
 <span class="n">numeric_cols</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">,</span>
                 <span class="s1">&#39;traveltime&#39;</span><span class="p">,</span>
@@ -1052,14 +1053,14 @@ The model is called “naive” since we do not expect the features to be indepe
 $$
     P(A|B) = \frac{P(A)P(B|A)}{P(B)}
 $$
-To have an easier understanding of the relation between the training of a model and the bayes theorem, let's reformulate this equation in terms of class and samples:
+To have an easier understanding of the relation between the training of a model and the bayes theorem, let's reformulate this equation in terms of class and sample:
 $$
     P(\text{class}|\text{sample}) = \frac{P(\text{class})P(\text{sample}|\text{class})}{P(\text{sample})}
 $$
 Given a new sample, we want to predict its class. We will compute $P(\text{sample}|\text{class})P(\text{sample})$ according to the training data.
 When predicting, we utilize the following approximation:
 $$
-    P(c_j|x_i) \sim P(c_j)P(x_i|c_j)\dots P(x_D|c_j)
+    P(c_j|\boldsymbol{x}) \sim P(c_j)P(x_i|c_j)\dots P(x_D|c_j)
 $$</p>
 <p>In other words, for each potential class, we multiply the probability of the class (prior) with the probability of finding each features of $x_i$ in each class $c_j$ (posterior).</p>
 <p>For categorical or binay features, we group the training samples according to each class
