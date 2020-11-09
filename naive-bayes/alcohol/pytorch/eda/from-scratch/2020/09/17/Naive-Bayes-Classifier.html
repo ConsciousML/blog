@@ -1232,7 +1232,7 @@ $$</li>
                         <span class="c1"># mean and std of the class i on feature j</span>
                         <span class="n">mean</span><span class="p">,</span> <span class="n">std</span> <span class="o">=</span> <span class="n">prob_feature_per_class</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
                         <span class="n">pred_probs</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gaussian_likelihood</span><span class="p">(</span><span class="n">elt</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">)</span>
-        <span class="c1"># Get to highest probability among all classes</span>
+        <span class="c1"># Return the highest probability among all classes</span>
         <span class="k">return</span> <span class="n">pred_probs</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 
