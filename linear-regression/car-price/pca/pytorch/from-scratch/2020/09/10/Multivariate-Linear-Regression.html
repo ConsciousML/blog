@@ -165,7 +165,8 @@ window.onload = wrap_img;
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The CarDekho dataset contains information about used cars listed on the website of the same name.
+<p>The goal of this experiment is to train a linear model to predict the selling price of a car.
+We will use the framework Pytorch for the matrix calculus and the CarDekho dataset that contains information about used cars listed on the website of the same name.
 This dataset has 301 unique entities with the following features:</p>
 <ul>
 <li>car name</li>
@@ -177,23 +178,6 @@ This dataset has 301 unique entities with the following features:</p>
 <li>transmission: such as manual or automatic</li>
 <li>owner: how many times the car changed owner</li>
 </ul>
-<p>The goal of this experiment is to train a linear model to predict the selling price of a car.
-We will use the framework Pytorch for the matrix calculus.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>import os
-import sys
-import torch
-import pandas as pd
-import numpy as np
-import seaborn as sns
-import statsmodels.api as sm
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split</p>
 
 </div>
 </div>
@@ -533,7 +517,7 @@ from sklearn.model_selection import train_test_split</p>
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Most cars on sales are consuming petrol instead of diesel, have had only one owner, are from 2012-present, are manual and have a selling price between 1000 and 10000 dollars.</p>
+<p>Most cars on sales are consuming petrol instead of diesel, have had only one owner, are from 2012-present, are manual and most have a selling price between 1000 and 10000 dollars.</p>
 
 </div>
 </div>
@@ -648,8 +632,7 @@ As expected, the present price variable is the most correlated with the target s
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Most of the features are highly correlated to each other.
 Some outliers are present but as there is very few, we will keep them in the training set.
-The year feature have a polynomial correlation with the selling price.
-A polynomial regression will most likely overperform a linear regression.</p>
+The year feature have a polynomial correlation with the selling price so a polynomial regression will most likely outperform a standard linear regression.</p>
 
 </div>
 </div>
@@ -1026,7 +1009,7 @@ More information at this <a href="http://kitchingroup.cheme.cmu.edu/blog/2015/01
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Exploratory-Data-Analysis">Exploratory Data Analysis<a class="anchor-link" href="#Exploratory-Data-Analysis"> </a></h3><p>We made an attempt to discard some features based on p-value but it didn't improve the results.
+<h3 id="Exploratory-Data-Analysis">Exploratory Data Analysis<a class="anchor-link" href="#Exploratory-Data-Analysis"> </a></h3><p>I made an attempt to discard some features based on p-value but it didn't improve the results.
 More on p-value <a href="https://www.statsdirect.com/help/basics/p_values.htm#:~:text=The%20P%20value%2C%20or%20calculated,the%20hypothesis%20is%20being%20tested">here</a>.</p>
 
 </div>
